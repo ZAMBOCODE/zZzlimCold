@@ -1034,124 +1034,53 @@
         </div>
     </div>
 
-    <!-- ===================== HERO V1 – Text links, Bild rechts, Bullets unten ===================== -->
-    <section id="main-content" class="relative bg-[#F8F6F4] py-16 md:py-28 lg:py-36">
-        <div class="max-w-7xl mx-auto px-6 relative z-10">
-            <div class="text-center text-xs font-bold uppercase tracking-widest text-primary/60 mb-8 font-body">Version 1</div>
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
-                <!-- Text -->
-                <div class="text-left">
-                    <h1 class="text-[clamp(1.75rem,8vw,4.5rem)] font-medium font-display leading-[0.95] tracking-tight mb-2">
-                        Schlaf ist keine Pause.</h1>
-                    <p class="text-[clamp(1.75rem,8vw,4.5rem)] font-medium font-display leading-[0.95] tracking-tight mb-8">
-                        <span class="text-primary italic">Schlaf ist <span id="hero-word-wrap"><span id="hero-word"></span></span></span></p>
-                    <p class="text-base md:text-lg text-slate-500 font-display leading-relaxed max-w-xl mb-8">
-                        Wenn du nachts hellwach bist oder morgens gerädert aufwachst, liegt das oft nicht an dir – sondern an deinem Nervensystem und deiner Abendroutine.
-                    </p>
-                    <a href="https://zzzlim.de/products/zzzlim%C2%AE-monatskur-30-kapseln"
-                        class="cta-glow bg-primary text-white px-10 py-4 rounded-xl font-bold text-base hover:bg-primary/90 cursor-pointer inline-block mb-10">
-                        In Ruhe ausprobieren
-                    </a>
-                    <ul class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm text-slate-600 font-body">
-                        <li class="flex items-start gap-2"><span class="text-primary mt-0.5">&#10003;</span>14 sorgfältig abgestimmte Wirkstoffe</li>
-                        <li class="flex items-start gap-2"><span class="text-primary mt-0.5">&#10003;</span>Herstellung nach europäischen Qualitätsstandards</li>
-                        <li class="flex items-start gap-2"><span class="text-primary mt-0.5">&#10003;</span>Rezeptur auf Basis zugelassener EU-Health-Claims</li>
-                        <li class="flex items-start gap-2"><span class="text-primary mt-0.5">&#10003;</span>Entwickelt als Teil einer bewussten Abendroutine</li>
-                    </ul>
-                </div>
-                <!-- Produktbild -->
-                <div class="flex justify-center lg:justify-end">
-                    <img src="ProductPicZZLIM.png" alt="zZzlim® Night Complex"
-                        class="w-full max-w-[340px] md:max-w-[420px] h-auto object-contain drop-shadow-xl" />
+    <!-- HERO – Mobile: V3 (zentriert, Dose neben Bullets) | Desktop: V1 (links, Dose Hintergrund) -->
+    <section id="main-content" class="relative bg-[#F8F6F4] py-16 md:py-28 lg:py-36 overflow-hidden">
+        <div class="max-w-6xl mx-auto px-6 relative z-10">
+            <!-- Headline + Text: zentriert auf Mobile, links auf Desktop -->
+            <div class="text-center md:text-left max-w-xl mx-auto md:mx-0 mb-8">
+                <h1 class="text-[clamp(1.75rem,8vw,4rem)] font-medium font-display leading-[0.95] tracking-tight mb-2">
+                    Schlaf ist keine Pause.</h1>
+                <p class="text-[clamp(1.75rem,8vw,4rem)] font-medium font-display leading-[0.95] tracking-tight mb-6">
+                    <span class="text-primary italic">Schlaf ist <span id="hero-word-wrap"><span id="hero-word"></span></span></span></p>
+                <p class="text-base md:text-lg text-slate-500 font-display leading-relaxed mb-6">
+                    Wenn du nachts hellwach bist oder morgens gerädert aufwachst, liegt das oft nicht an dir – sondern an deinem Nervensystem und deiner Abendroutine.
+                </p>
+                <a href="https://zzzlim.de/products/zzzlim%C2%AE-monatskur-30-kapseln"
+                    class="cta-glow bg-primary text-white px-10 py-4 rounded-xl font-bold text-base hover:bg-primary/90 cursor-pointer inline-block">
+                    In Ruhe ausprobieren
+                </a>
+            </div>
+
+            <!-- Mobile: Bullets links + Dose rechts im Grid -->
+            <div class="grid grid-cols-5 gap-4 items-end md:hidden mt-8">
+                <ul class="col-span-3 space-y-3 text-sm text-slate-700 font-body">
+                    <li class="flex items-start gap-2"><span class="text-primary font-bold mt-0.5">&bull;</span>14 sorgfältig abgestimmte Wirkstoffe</li>
+                    <li class="flex items-start gap-2"><span class="text-primary font-bold mt-0.5">&bull;</span>Herstellung nach europäischen Qualitätsstandards</li>
+                    <li class="flex items-start gap-2"><span class="text-primary font-bold mt-0.5">&bull;</span>Rezeptur auf Basis zugelassener EU-Health-Claims</li>
+                    <li class="flex items-start gap-2"><span class="text-primary font-bold mt-0.5">&bull;</span>Entwickelt als Teil einer bewussten Abendroutine</li>
+                </ul>
+                <div class="col-span-2 flex justify-center">
+                    <img src="zzzlim-dose.jpeg" alt="zZzlim® Dose"
+                        class="w-full max-w-[200px] h-auto object-contain drop-shadow-xl" />
                 </div>
             </div>
+
+            <!-- Desktop: Bullets links + Dose als Hintergrund rechts -->
+            <div class="relative mt-8 hidden md:block">
+                <ul class="relative z-10 space-y-3 text-sm text-slate-700 font-body max-w-xs">
+                    <li class="flex items-start gap-2"><span class="text-primary font-bold mt-0.5">&bull;</span>14 sorgfältig abgestimmte Wirkstoffe</li>
+                    <li class="flex items-start gap-2"><span class="text-primary font-bold mt-0.5">&bull;</span>Herstellung nach europäischen Qualitätsstandards</li>
+                    <li class="flex items-start gap-2"><span class="text-primary font-bold mt-0.5">&bull;</span>Rezeptur auf Basis zugelassener EU-Health-Claims</li>
+                    <li class="flex items-start gap-2"><span class="text-primary font-bold mt-0.5">&bull;</span>Entwickelt als Teil einer bewussten Abendroutine</li>
+                </ul>
+                <img src="zzzlim-dose.jpeg" alt="zZzlim® Dose"
+                    class="absolute right-0 bottom-0 translate-y-1/4 w-[55%] max-w-[400px] h-auto object-contain opacity-90 pointer-events-none select-none" />
+            </div>
         </div>
-        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
-            <span class="text-xs font-bold uppercase tracking-wider text-primary font-display">Warum das passiert</span>
+        <div class="flex flex-col items-center gap-2 mt-16 relative z-10">
+            <span class="text-xs font-bold uppercase tracking-wider text-primary font-display">Mehr erfahren</span>
             <i data-lucide="chevron-down" class="w-5 h-5 text-primary"></i>
-        </div>
-    </section>
-
-    <!-- ===================== HERO V2 – Zentriert, Bullets + Bild als Karte darunter ===================== -->
-    <section class="relative bg-[#F8F6F4] py-16 md:py-28 lg:py-36 border-t-4 border-primary/20">
-        <div class="max-w-6xl mx-auto px-6 relative z-10">
-            <div class="text-center text-xs font-bold uppercase tracking-widest text-primary/60 mb-8 font-body">Version 2</div>
-            <div class="text-center max-w-3xl mx-auto mb-12">
-                <h2 class="text-[clamp(1.75rem,8vw,4.5rem)] font-medium font-display leading-[0.95] tracking-tight mb-2">
-                    Schlaf ist keine Pause.</h2>
-                <p class="text-[clamp(1.75rem,8vw,4.5rem)] font-medium font-display leading-[0.95] tracking-tight mb-8">
-                    <span class="text-primary italic">Schlaf ist Reparatur.</span></p>
-                <p class="text-base md:text-lg text-slate-500 font-display leading-relaxed max-w-2xl mx-auto mb-8">
-                    Wenn du nachts hellwach bist oder morgens gerädert aufwachst, liegt das oft nicht an dir – sondern an deinem Nervensystem und deiner Abendroutine.
-                </p>
-                <a href="https://zzzlim.de/products/zzzlim%C2%AE-monatskur-30-kapseln"
-                    class="cta-glow bg-primary text-white px-10 py-4 rounded-xl font-bold text-base hover:bg-primary/90 cursor-pointer inline-block">
-                    In Ruhe ausprobieren
-                </a>
-            </div>
-            <!-- Bullets + Produktbild Karte -->
-            <div class="bg-white/70 backdrop-blur rounded-2xl border border-slate-200/60 p-6 md:p-10 grid grid-cols-1 md:grid-cols-2 gap-8 items-center max-w-4xl mx-auto">
-                <ul class="space-y-4 text-sm text-slate-700 font-body">
-                    <li class="flex items-start gap-3">
-                        <span class="w-6 h-6 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0 text-xs font-bold">&#10003;</span>
-                        14 sorgfältig abgestimmte Wirkstoffe</li>
-                    <li class="flex items-start gap-3">
-                        <span class="w-6 h-6 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0 text-xs font-bold">&#10003;</span>
-                        Herstellung nach europäischen Qualitätsstandards</li>
-                    <li class="flex items-start gap-3">
-                        <span class="w-6 h-6 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0 text-xs font-bold">&#10003;</span>
-                        Rezeptur auf Basis zugelassener EU-Health-Claims</li>
-                    <li class="flex items-start gap-3">
-                        <span class="w-6 h-6 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0 text-xs font-bold">&#10003;</span>
-                        Entwickelt als Teil einer bewussten Abendroutine</li>
-                </ul>
-                <div class="flex justify-center">
-                    <img src="ProductPicZZLIM.png" alt="zZzlim® Night Complex"
-                        class="w-full max-w-[280px] h-auto object-contain drop-shadow-lg" />
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===================== HERO V3 – Kompakt, Bild links, Text+Bullets rechts (wie Mockup) ===================== -->
-    <section class="relative bg-[#F8F6F4] py-16 md:py-28 lg:py-36 border-t-4 border-primary/20">
-        <div class="max-w-6xl mx-auto px-6 relative z-10">
-            <div class="text-center text-xs font-bold uppercase tracking-widest text-primary/60 mb-8 font-body">Version 3</div>
-            <!-- Headline zentriert -->
-            <div class="text-center mb-12">
-                <h2 class="text-[clamp(1.75rem,8vw,4.5rem)] font-medium font-display leading-[0.95] tracking-tight mb-2">
-                    Schlaf ist keine Pause.</h2>
-                <p class="text-[clamp(1.75rem,8vw,4.5rem)] font-medium font-display leading-[0.95] tracking-tight mb-6">
-                    <span class="text-primary italic">Schlaf ist Reparatur.</span></p>
-                <p class="text-base md:text-lg text-slate-500 font-display leading-relaxed max-w-2xl mx-auto mb-8">
-                    Wenn du nachts hellwach bist oder morgens gerädert aufwachst, liegt das oft nicht an dir – sondern an deinem Nervensystem und deiner Abendroutine.
-                </p>
-                <a href="https://zzzlim.de/products/zzzlim%C2%AE-monatskur-30-kapseln"
-                    class="cta-glow bg-primary text-white px-10 py-4 rounded-xl font-bold text-base hover:bg-primary/90 cursor-pointer inline-block">
-                    In Ruhe ausprobieren
-                </a>
-            </div>
-            <!-- Bild + Bullets nebeneinander -->
-            <div class="grid grid-cols-1 md:grid-cols-5 gap-8 items-center max-w-4xl mx-auto">
-                <div class="md:col-span-2 flex justify-center">
-                    <img src="ProductPicZZLIM.png" alt="zZzlim® Night Complex"
-                        class="w-full max-w-[240px] md:max-w-[280px] h-auto object-contain drop-shadow-xl" />
-                </div>
-                <ul class="md:col-span-3 space-y-4 text-sm text-slate-700 font-body">
-                    <li class="flex items-start gap-3 bg-white/60 rounded-xl px-4 py-3 border border-slate-100">
-                        <span class="text-primary font-bold mt-0.5">&#10003;</span>
-                        <span><strong class="text-slate-800">14 abgestimmte Wirkstoffe</strong> – sorgfältig kombiniert für deine Schlafqualität</span></li>
-                    <li class="flex items-start gap-3 bg-white/60 rounded-xl px-4 py-3 border border-slate-100">
-                        <span class="text-primary font-bold mt-0.5">&#10003;</span>
-                        <span><strong class="text-slate-800">Europäische Qualitätsstandards</strong> – Herstellung nach höchsten Vorgaben</span></li>
-                    <li class="flex items-start gap-3 bg-white/60 rounded-xl px-4 py-3 border border-slate-100">
-                        <span class="text-primary font-bold mt-0.5">&#10003;</span>
-                        <span><strong class="text-slate-800">EU-Health-Claims</strong> – Rezeptur auf Basis zugelassener Angaben</span></li>
-                    <li class="flex items-start gap-3 bg-white/60 rounded-xl px-4 py-3 border border-slate-100">
-                        <span class="text-primary font-bold mt-0.5">&#10003;</span>
-                        <span><strong class="text-slate-800">Bewusste Abendroutine</strong> – entwickelt als fester Teil deines Rituals</span></li>
-                </ul>
-            </div>
         </div>
     </section>
 
