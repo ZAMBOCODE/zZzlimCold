@@ -468,46 +468,48 @@
         margin-bottom: 1.25rem;
     }
 
-    /* Pillar Card — all cards same style */
-    .pillar-card, .pillar-card-outer {
+    /* Pillar Card — Accent Header Style */
+    .pillar-card {
         background: #ffffff;
-        border: 1px solid #861330;
-        box-shadow: 3px 3px 0px #861330;
-        color: #1a1a1a;
-        transition: transform 0.3s cubic-bezier(0.25,0.46,0.45,0.94), box-shadow 0.3s ease;
-    }
-    .pillar-card:hover, .pillar-card-outer:hover {
-        transform: translateY(-4px) translateX(-2px);
-        box-shadow: 5px 6px 0px #861330;
-    }
-    .pillar-card .pillar-num, .pillar-card-outer .pillar-num {
-        color: #1a1a1a;
-        -webkit-text-fill-color: #1a1a1a;
-        background: none;
-    }
-    .pillar-card ul li span, .pillar-card-outer ul li span { color: #475569; }
-
-    /* Pillar subtitle — hidden by default, shown on hover/tap */
-    .pillar-subtitle {
-        max-height: 0;
+        border-radius: 20px;
         overflow: hidden;
-        opacity: 0;
-        margin-top: 0;
-        padding-top: 0;
-        border-top: none;
-        transition: max-height 0.4s ease, opacity 0.3s ease, margin-top 0.3s ease, padding-top 0.3s ease;
+        box-shadow: 0 4px 24px rgba(134,19,48,0.06), 0 1px 3px rgba(0,0,0,0.04);
+        transition: all 0.4s cubic-bezier(0.25,0.46,0.45,0.94);
     }
-    .pillar-card:hover .pillar-subtitle,
-    .pillar-card-outer:hover .pillar-subtitle,
-    .pillar-card.expanded .pillar-subtitle,
-    .pillar-card-outer.expanded .pillar-subtitle {
-        max-height: 80px;
-        opacity: 1;
-        margin-top: 1.5rem;
-        padding-top: 1rem;
-        border-top: 1px solid rgba(134,19,48,0.08);
+    .pillar-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 12px 40px rgba(134,19,48,0.12), 0 2px 6px rgba(0,0,0,0.04);
     }
-    .pillar-card h3, .pillar-card-outer h3 { color: #1a1a1a; }
+    .pillar-card-accent {
+        background: linear-gradient(135deg, #861330 0%, #a62950 100%);
+        padding: 32px 32px 28px;
+        text-align: center;
+    }
+    .pillar-card:nth-child(2) .pillar-card-accent {
+        background: linear-gradient(135deg, #6b0f27 0%, #861330 100%);
+    }
+    .pillar-card:nth-child(3) .pillar-card-accent {
+        background: linear-gradient(135deg, #861330 0%, #b8405c 100%);
+    }
+    .pillar-card .pillar-num {
+        font-size: 3rem;
+        font-weight: 300;
+        color: rgba(255,255,255,0.3);
+        -webkit-text-fill-color: rgba(255,255,255,0.3);
+        background: none;
+        line-height: 1;
+        margin-bottom: 12px;
+    }
+    .pillar-card-accent h3 {
+        font-size: 1.05rem;
+        font-weight: 500;
+        color: #ffffff;
+        line-height: 1.4;
+    }
+    .pillar-card-body {
+        padding: 28px 32px 36px;
+    }
+    .pillar-card ul li span { color: #475569; }
 
     /* Cycle Rings */
     .cycle-ring-1 { transform-origin: 160px 160px; animation: spinCW 22s linear infinite; }
@@ -673,9 +675,7 @@
 <!-- HERO -->
 <section id="main-content" class="hero-mesh relative h-[calc(100dvh-3rem)] flex flex-col items-center justify-center text-center overflow-hidden">
 <div class="hero-stagger max-w-3xl mx-auto px-6 relative z-10">
-<h1 class="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-medium leading-[0.95] tracking-tight mb-1">
-    Schlaf ist keine Pause.
-</h1>
+<h1 class="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-medium leading-[0.95] tracking-tight mb-1 whitespace-nowrap">Schlaf ist keine Pause.</h1>
 <p class="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-medium italic text-primary leading-[0.95] tracking-tight mb-6">Schlaf ist <span id="hero-word-wrap"><span id="hero-word"></span></span></p>
 <p class="text-lg md:text-xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed mb-7">
     Wenn du nachts hellwach bist oder morgens gerädert aufwachst, liegt das oft nicht an dir – sondern an deinem Nervensystem und deiner Abendroutine.
@@ -940,13 +940,16 @@
 <span class="label-badge">Die Formulierung</span>
 <h2 class="text-4xl md:text-5xl font-medium">Die 3 Säulen von zZzlim®</h2>
 </div>
-<div class="grid grid-cols-1 lg:grid-cols-3 gap-8 stagger-children items-start">
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-7 stagger-children items-start">
 
 <!-- Säule 1 -->
-<div class="reveal pillar-card-outer rounded-xl p-6 md:p-10 text-center lg:mt-12" style="--index: 0">
-<span class="pillar-num text-6xl font-medium mb-4 block">01</span>
-<h3 class="text-xl font-bold mb-4">Unterstützung des Schlafbeginns</h3>
-<ul class="space-y-3 text-slate-600 dark:text-slate-400 leading-relaxed text-left inline-block">
+<div class="reveal pillar-card" style="--index: 0">
+<div class="pillar-card-accent">
+<span class="pillar-num block">01</span>
+<h3>Unterstützung des Schlafbeginns</h3>
+</div>
+<div class="pillar-card-body">
+<ul class="space-y-3 text-slate-600 dark:text-slate-400 leading-relaxed text-left">
 <li class="flex items-start gap-3">
 <i data-lucide="check" class="w-4 h-4 text-primary mt-1 shrink-0"></i>
 <span>Melatonin trägt dazu bei, die Einschlafzeit zu verkürzen.</span>
@@ -956,14 +959,17 @@
 <span>L-Tryptophan ist eine Vorstufe körpereigener Botenstoffe, die an der Schlaf-Wach-Regulation beteiligt sind.</span>
 </li>
 </ul>
-<p class="pillar-subtitle text-sm italic text-slate-500">Guter Schlaf bildet die Grundlage für die nächtliche Regeneration.</p>
+</div>
 </div>
 
 <!-- Säule 2 -->
-<div class="reveal pillar-card rounded-xl p-6 md:p-10 text-center" style="--index: 1">
-<span class="pillar-num text-6xl font-medium mb-4 block">02</span>
-<h3 class="text-xl font-bold mb-4">Unterstützung des nächtlichen Stoffwechsels</h3>
-<ul class="space-y-3 text-slate-600 dark:text-slate-400 leading-relaxed text-left inline-block">
+<div class="reveal pillar-card" style="--index: 1">
+<div class="pillar-card-accent">
+<span class="pillar-num block">02</span>
+<h3>Unterstützung des nächtlichen Stoffwechsels</h3>
+</div>
+<div class="pillar-card-body">
+<ul class="space-y-3 text-slate-600 dark:text-slate-400 leading-relaxed text-left">
 <li class="flex items-start gap-3">
 <i data-lucide="check" class="w-4 h-4 text-primary mt-1 shrink-0"></i>
 <span>Zink trägt zu einem normalen Kohlenhydratstoffwechsel bei.</span>
@@ -977,14 +983,17 @@
 <span>B-Vitamine tragen zu einem normalen Energiestoffwechsel bei.</span>
 </li>
 </ul>
-<p class="pillar-subtitle text-sm italic text-slate-500">Die Nacht ist eine Phase der Neuordnung und Regeneration.</p>
+</div>
 </div>
 
 <!-- Säule 3 -->
-<div class="reveal pillar-card-outer rounded-xl p-6 md:p-10 text-center lg:mt-12" style="--index: 2">
-<span class="pillar-num text-6xl font-medium mb-4 block">03</span>
-<h3 class="text-xl font-bold mb-4">Unterstützung der täglichen Vitalität</h3>
-<ul class="space-y-3 text-slate-600 dark:text-slate-400 leading-relaxed text-left inline-block">
+<div class="reveal pillar-card" style="--index: 2">
+<div class="pillar-card-accent">
+<span class="pillar-num block">03</span>
+<h3>Unterstützung der täglichen Vitalität</h3>
+</div>
+<div class="pillar-card-body">
+<ul class="space-y-3 text-slate-600 dark:text-slate-400 leading-relaxed text-left">
 <li class="flex items-start gap-3">
 <i data-lucide="check" class="w-4 h-4 text-primary mt-1 shrink-0"></i>
 <span>Niacin trägt zu einer normalen psychischen Funktion bei.</span>
@@ -998,7 +1007,7 @@
 <span>Biotin trägt zu einem normalen Energiestoffwechsel bei.</span>
 </li>
 </ul>
-<p class="pillar-subtitle text-sm italic text-slate-500">Erholsamer Schlaf wirkt sich auf den nächsten Tag aus.</p>
+</div>
 </div>
 
 </div>
@@ -1422,12 +1431,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     updateLineFill();
 })();
 
-// Pillar card tap-to-expand (mobile)
-document.querySelectorAll('.pillar-card, .pillar-card-outer').forEach(card => {
-    card.addEventListener('click', () => {
-        card.classList.toggle('expanded');
-    });
-});
 
 // Floating Z's
 (function() {
