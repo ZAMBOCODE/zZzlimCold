@@ -1,1537 +1,2024 @@
 <!DOCTYPE html>
-<html class="light" lang="de"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>zZzlim® | Wissenschaftliche Abendroutine</title>
-<link rel="icon" type="image/jpeg" href="freepik__mach-mir-das-favcon-nochmal-clean-schwarzer-hinter__90288.jpeg" />
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&display=swap" rel="stylesheet"/>
-<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
-<script id="tailwind-config">
-    tailwind.config = {
-        darkMode: "class",
-        theme: {
-            extend: {
-                colors: {
-                    "primary": "#861330",
-                    "background-light": "#f8f6f6",
-                    "background-dark": "#211115",
+<html class="light" lang="de">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>zZzlim® | Wissenschaftliche Abendroutine</title>
+    <link rel="icon" type="image/jpeg" href="freepik__mach-mir-das-favcon-nochmal-clean-schwarzer-hinter__90288.jpeg" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet" />
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#7C162E",
+                        "background-light": "#F8F6F4",
+                        "background-dark": "#211115",
+                    },
+                    fontFamily: {
+                        "display": ["Fraunces", "serif"],
+                        "body": ["Inter", "system-ui", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.5rem", "lg": "0.75rem", "xl": "1rem", "2xl": "1.25rem", "full": "9999px" },
                 },
-                fontFamily: {
-                    "display": ["Fraunces", "serif"]
-                },
-                borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
             },
-        },
-    }
-</script>
-<style>
-    body { font-family: 'Fraunces', serif; }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+        }
 
-    /* Custom Scrollbar */
-    ::-webkit-scrollbar { width: 8px; }
-    ::-webkit-scrollbar-track { background: #f8f6f6; }
-    ::-webkit-scrollbar-thumb { background: #861330; border-radius: 4px; }
-    ::-webkit-scrollbar-thumb:hover { background: #6e0f28; }
-    html { scrollbar-color: #861330 #f8f6f6; scrollbar-width: thin; scroll-behavior: smooth; }
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: 'Fraunces', serif;
+        }
 
-    /* Ambient Floating Blobs */
-    .ambient-blob {
-        position: fixed;
-        pointer-events: none;
-        z-index: 0;
-        opacity: 0.14;
-        border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
-        background: radial-gradient(circle, rgba(134,19,48,0.6), rgba(134,19,48,0.1));
-    }
-    .ambient-blob:nth-child(1) {
-        width: 300px; height: 300px; top: 10%; left: -5%;
-        animation: blobFloat1 25s ease-in-out infinite;
-    }
-    .ambient-blob:nth-child(2) {
-        width: 240px; height: 240px; top: 55%; right: -8%;
-        animation: blobFloat2 20s ease-in-out infinite;
-    }
-    .ambient-blob:nth-child(3) {
-        width: 200px; height: 200px; bottom: 10%; left: 15%;
-        animation: blobFloat3 22s ease-in-out infinite;
-    }
-    @keyframes blobFloat1 {
-        0%, 100% { transform: translate(0, 0) rotate(0deg); }
-        33% { transform: translate(40px, -30px) rotate(60deg); }
-        66% { transform: translate(-20px, 20px) rotate(120deg); }
-    }
-    @keyframes blobFloat2 {
-        0%, 100% { transform: translate(0, 0) rotate(0deg); }
-        50% { transform: translate(-50px, 30px) rotate(180deg); }
-    }
-    @keyframes blobFloat3 {
-        0%, 100% { transform: translate(0, 0) rotate(0deg); }
-        33% { transform: translate(30px, 20px) rotate(90deg); }
-        66% { transform: translate(-40px, -10px) rotate(200deg); }
-    }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
 
-    /* Hero Gradient Mesh */
-    .hero-mesh {
-        position: relative;
-    }
-    .hero-mesh::before {
-        content: '';
-        position: absolute;
-        inset: 0;
-        background:
-            radial-gradient(ellipse 700px 500px at 15% 30%, rgba(134,19,48,0.38) 0%, transparent 60%),
-            radial-gradient(ellipse 500px 700px at 85% 70%, rgba(134,19,48,0.28) 0%, transparent 60%),
-            radial-gradient(ellipse 400px 300px at 50% 90%, rgba(134,19,48,0.18) 0%, transparent 50%);
-        animation: heroMeshShift 12s ease-in-out infinite alternate;
-        z-index: 0;
-    }
-    @keyframes heroMeshShift {
-        0% { opacity: 0.75; transform: scale(1); }
-        100% { opacity: 1; transform: scale(1.08); }
-    }
+        ::-webkit-scrollbar-track {
+            background: #F8F6F4;
+        }
 
-    /* Dark Section */
-    .section-dark {
-        background: linear-gradient(180deg, #1a0d11 0%, #211115 50%, #1a0d11 100%);
-        color: #f0eaea;
-        position: relative;
-        overflow: hidden;
-    }
-    .section-dark::before {
-        content: '';
-        position: absolute;
-        inset: 0;
-        background:
-            radial-gradient(circle 400px at 20% 50%, rgba(134,19,48,0.18) 0%, transparent 60%),
-            radial-gradient(circle 300px at 80% 30%, rgba(134,19,48,0.12) 0%, transparent 60%);
-        pointer-events: none;
-    }
+        ::-webkit-scrollbar-thumb {
+            background: #7C162E;
+            border-radius: 3px;
+        }
 
-    /* Glass Card */
-    .card-glass {
-        position: relative;
-        background: linear-gradient(135deg, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0.35) 100%);
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
-        border: 1px solid rgba(134,19,48,0.08);
-        overflow: hidden;
-        transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-                    box-shadow 0.3s ease, border-color 0.3s ease;
-    }
-    .card-glass::before {
-        content: '';
-        position: absolute;
-        top: 0; left: 0; right: 50%; bottom: 50%;
-        background: radial-gradient(circle at 20% 20%, rgba(134,19,48,0.06) 0%, transparent 70%);
-        pointer-events: none;
-    }
-    .card-glass:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 20px 50px rgba(134,19,48,0.1), 0 0 0 1px rgba(134,19,48,0.15);
-        border-color: rgba(134,19,48,0.2);
-    }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #6e0f28;
+        }
 
-    /* Testimonial Card */
-    .testimonial-card {
-        position: relative;
-        border-left: 3px solid #861330;
-    }
-    .testimonial-card::before {
-        content: '\201C';
-        position: absolute;
-        top: 1.5rem; right: 2rem;
-        font-size: 5rem; line-height: 1;
-        color: rgba(134,19,48,0.06);
-        font-family: 'Fraunces', serif;
-        pointer-events: none;
-    }
+        html {
+            scrollbar-color: #7C162E #F8F6F4;
+            scrollbar-width: thin;
+            scroll-behavior: smooth;
+        }
 
-    /* Pillar Number Gradient */
-    .pillar-num {
-        background: linear-gradient(135deg, rgba(134,19,48,0.2) 0%, rgba(134,19,48,0.05) 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-    }
+        /* Clean Card */
+        .card-glass {
+            background: #ffffff;
+            border-radius: 16px;
+            border: 1px solid rgba(0, 0, 0, 0.04);
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
 
-    /* Wave Divider */
-    .wave-divider {
-        position: relative;
-        margin-top: -1px;
-    }
-    .wave-divider svg {
-        display: block;
-        width: 100%;
-        height: auto;
-    }
+        .card-glass:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+        }
 
-    /* Section Shader Gradients */
-    .shader-warm {
-        background:
-            radial-gradient(ellipse 60% 50% at 15% 0%, rgba(134,19,48,0.09) 0%, transparent 70%),
-            radial-gradient(ellipse 50% 60% at 90% 100%, rgba(134,19,48,0.07) 0%, transparent 70%),
-            linear-gradient(180deg, #f8f6f6 0%, #f4f0f1 50%, #f8f6f6 100%);
-    }
-    .shader-cool {
-        background:
-            radial-gradient(ellipse 70% 50% at 80% 10%, rgba(134,19,48,0.08) 0%, transparent 60%),
-            radial-gradient(ellipse 50% 70% at 10% 90%, rgba(134,19,48,0.06) 0%, transparent 60%),
-            linear-gradient(180deg, #ffffff 0%, #f9f5f6 40%, #f8f6f6 100%);
-    }
-    .shader-soft {
-        background:
-            radial-gradient(ellipse 50% 50% at 50% 0%, rgba(134,19,48,0.08) 0%, transparent 60%),
-            radial-gradient(ellipse 40% 40% at 20% 80%, rgba(134,19,48,0.06) 0%, transparent 50%),
-            radial-gradient(ellipse 40% 40% at 85% 70%, rgba(134,19,48,0.05) 0%, transparent 50%),
-            #f8f6f6;
-    }
-    .shader-glow {
-        background:
-            radial-gradient(ellipse 60% 60% at 50% 50%, rgba(134,19,48,0.09) 0%, transparent 60%),
-            radial-gradient(ellipse 40% 50% at 10% 20%, rgba(134,19,48,0.06) 0%, transparent 50%),
-            radial-gradient(ellipse 40% 50% at 95% 80%, rgba(134,19,48,0.05) 0%, transparent 50%),
-            linear-gradient(180deg, #f8f6f6 0%, #f4f0f1 50%, #f8f6f6 100%);
-    }
+        /* Testimonial Card */
+        .testimonial-card {
+            position: relative;
+            border-left: 3px solid #861330;
+        }
 
-    /* CTA Glow */
-    .cta-glow {
-        box-shadow: 0 0 40px rgba(134,19,48,0.25), 0 4px 15px rgba(134,19,48,0.15);
-        transition: transform 0.3s cubic-bezier(0.25,0.46,0.45,0.94), box-shadow 0.3s ease, letter-spacing 0.3s ease;
-        position: relative;
-        overflow: hidden;
-    }
-    .cta-glow::after {
-        content: '';
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(120deg, transparent 30%, rgba(255,255,255,0.12) 50%, transparent 70%);
-        transform: translateX(-100%);
-        transition: transform 0.5s ease;
-    }
-    .cta-glow:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 0 60px rgba(134,19,48,0.4), 0 12px 30px rgba(134,19,48,0.25);
-        letter-spacing: 0.02em;
-    }
-    .cta-glow:hover::after {
-        transform: translateX(100%);
-    }
+        .testimonial-card::before {
+            content: '\201C';
+            position: absolute;
+            top: 1.5rem;
+            right: 2rem;
+            font-size: 5rem;
+            line-height: 1;
+            color: rgba(134, 19, 48, 0.06);
+            font-family: 'Fraunces', serif;
+            pointer-events: none;
+        }
 
-    /* Scroll Reveal */
-    .reveal {
-        opacity: 0;
-        transform: translateY(20px);
-        transition: opacity 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-                    transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        will-change: transform, opacity;
-    }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
+        /* Pillar Number Gradient */
+        .pillar-num {
+            background: linear-gradient(135deg, rgba(134, 19, 48, 0.2) 0%, rgba(134, 19, 48, 0.05) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
 
-    /* Hero Stagger */
-    .hero-stagger > * {
-        opacity: 0;
-        transform: translateY(30px);
-        animation: heroFadeIn 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
-    }
-    .hero-stagger > *:nth-child(1) { animation-delay: 0.1s; }
-    .hero-stagger > *:nth-child(2) { animation-delay: 0.25s; }
-    .hero-stagger > *:nth-child(3) { animation-delay: 0.4s; }
-    .hero-stagger > *:nth-child(4) { animation-delay: 0.55s; }
-    .hero-stagger > *:nth-child(5) { animation-delay: 0.7s; }
-    @keyframes heroFadeIn { to { opacity: 1; transform: translateY(0); } }
+        /* Wave Divider */
+        .wave-divider {
+            position: relative;
+            margin-top: -1px;
+        }
 
-    /* Stagger children */
-    .stagger-children > * { transition-delay: calc(var(--index, 0) * 0.1s); }
+        .wave-divider svg {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
 
-    /* Scroll Indicator Bounce */
-    .scroll-indicator {
-        animation: scrollBounce 2s cubic-bezier(0.36, 0.07, 0.19, 0.97) infinite;
-    }
-    @keyframes scrollBounce {
-        0%, 100% { transform: translate(-50%, 0); }
-        50% { transform: translate(-50%, 6px); }
-    }
+        /* Section Backgrounds — clean & warm */
+        .shader-warm {
+            background: #F8F6F4;
+        }
 
-    /* Button Press */
-    button, a[role="button"], .btn {
-        transition: transform 0.15s ease-out, background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
-    }
-    button:active, a[role="button"]:active, .btn:active { transform: scale(0.97); }
+        .shader-cool {
+            background: #F8F6F4;
+        }
 
-    /* Card Hover */
-    .card-hover {
-        transition: transform 0.2s ease-out, border-color 0.2s ease, box-shadow 0.2s ease;
-    }
-    .card-hover:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 8px 24px rgba(134, 19, 48, 0.08);
-    }
+        .shader-soft {
+            background: #F8F6F4;
+        }
 
-    /* Focus */
-    a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-visible {
-        outline: 2px solid #861330; outline-offset: 2px; border-radius: 4px;
-    }
+        .shader-glow {
+            background: #F8F6F4;
+        }
 
-    /* Skip Link */
-    .skip-link {
-        position: absolute; top: -100%; left: 50%; transform: translateX(-50%);
-        z-index: 100; background: #861330; color: white;
-        padding: 0.75rem 1.5rem; border-radius: 0 0 0.5rem 0.5rem;
-        font-weight: bold; font-size: 0.875rem;
-    }
-    .skip-link:focus { top: 0; }
+        /* CTA Button — clean pill style */
+        .cta-glow {
+            box-shadow: 0 4px 14px rgba(124, 22, 46, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-radius: 9999px;
+        }
 
-    /* Timeline */
-    .tl-section {
-        background: linear-gradient(to bottom,
-            rgba(134,19,48,0.03) 0%,
-            rgba(134,19,48,0.10) 45%,
-            rgba(134,19,48,0.03) 100%
-        );
-    }
-    .tl-line-track {
-        position: absolute; left: 50%; transform: translateX(-50%);
-        width: 2px; height: 100%; background: rgba(134,19,48,0.1);
-    }
-    .tl-line-fill {
-        position: absolute; left: 50%; transform: translateX(-50%);
-        width: 2px; height: 0%;
-        background: linear-gradient(to bottom, #861330, #861330 80%, transparent);
-        transition: height 0.05s linear; will-change: height;
-    }
-    .tl-dot {
-        width: 16px; height: 16px; border-radius: 50%;
-        background: rgba(134,19,48,0.2); border: 3px solid #f8f6f6;
-        transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        position: relative; z-index: 2;
-    }
-    .tl-dot.active {
-        background: #861330;
-        box-shadow: 0 0 0 6px rgba(134,19,48,0.15), 0 0 20px rgba(134,19,48,0.2);
-    }
-    .tl-dot.active::after {
-        content: ''; position: absolute; inset: -6px; border-radius: 50%;
-        border: 1px solid rgba(134,19,48,0.2); animation: dotPulse 2s ease-out infinite;
-    }
-    @keyframes dotPulse {
-        0% { transform: scale(1); opacity: 0.6; }
-        100% { transform: scale(2.2); opacity: 0; }
-    }
-    .tl-event {
-        opacity: 0;
-        transition: opacity 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-                    transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        will-change: transform, opacity;
-    }
-    .tl-event.from-left { transform: translateX(-40px); }
-    .tl-event.from-right { transform: translateX(40px); }
-    .tl-event.visible { opacity: 1; transform: translateX(0); }
-    .tl-time {
-        font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 200;
-        line-height: 1; color: #861330; letter-spacing: -0.02em;
-    }
-    .tl-icon-ring {
-        width: 44px; height: 44px; border-radius: 50%;
-        background: rgba(134,19,48,0.06); display: flex;
-        align-items: center; justify-content: center;
-        transition: background 0.4s ease;
-    }
-    .tl-event.visible .tl-icon-ring { background: rgba(134,19,48,0.1); }
+        .cta-glow:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(124, 22, 46, 0.3);
+        }
 
-    /* Mobile Timeline */
-    .tl-mobile-line-track { position: absolute; left: 11px; top: 0; width: 2px; height: 100%; background: rgba(134,19,48,0.1); }
-    .tl-mobile-line-fill { position: absolute; left: 11px; top: 0; width: 2px; height: 0%; background: linear-gradient(to bottom, #861330, #861330 80%, transparent); transition: height 0.05s linear; will-change: height; }
-    .tl-mobile-dot { width: 12px; height: 12px; border-radius: 50%; background: rgba(134,19,48,0.2); border: 2px solid #f8f6f6; flex-shrink: 0; transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94); position: relative; z-index: 2; }
-    .tl-mobile-dot.active { background: #861330; box-shadow: 0 0 0 4px rgba(134,19,48,0.15), 0 0 12px rgba(134,19,48,0.2); }
-    .tl-mobile-event { opacity: 0; transform: translateY(20px); transition: opacity 0.5s ease-out, transform 0.5s ease-out; }
-    .tl-mobile-event.visible { opacity: 1; transform: translateY(0); }
-    @media (max-width: 767px) { .tl-desktop { display: none; } .tl-mobile { display: block; } }
-    @media (min-width: 768px) { .tl-desktop { display: block; } .tl-mobile { display: none; } }
+        /* Scroll Reveal */
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            will-change: transform, opacity;
+        }
 
-    /* Testimonials Carousel */
-    .t-outer { overflow: hidden; width: 100%; }
-    .t-track {
-        display: flex;
-        gap: 1.5rem;
-        transition: transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        will-change: transform;
-    }
-    .t-card {
-        flex-shrink: 0;
-        background: white;
-        border: 1px solid rgba(134,19,48,0.12);
-        padding: 1.75rem 2rem;
-        position: relative;
-        border-radius: 0.5rem;
-        transition: border-color 0.2s ease;
-        overflow: hidden;
-        word-break: break-word;
-        box-sizing: border-box;
-    }
-    .t-card:hover { border-color: rgba(134,19,48,0.25); }
-    .t-stars {
-        display: flex;
-        gap: 2px;
-        margin-bottom: 1rem;
-        color: #861330;
-        font-size: 0.75rem;
-        letter-spacing: 2px;
-    }
-    .t-quote {
-        font-style: italic;
-        font-size: 0.92rem;
-        line-height: 1.75;
-        color: #475569;
-        margin-bottom: 1.25rem;
-    }
-    .t-author {
-        font-size: 0.78rem;
-        color: #861330;
-        font-weight: 600;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-        border-top: 1px solid rgba(134,19,48,0.08);
-        padding-top: 0.875rem;
-        margin-top: auto;
-    }
-    .t-nav-btn {
-        width: 2.75rem;
-        height: 2.75rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: white;
-        border: 1px solid rgba(134,19,48,0.15);
-        border-radius: 0.375rem;
-        cursor: pointer;
-        color: #861330;
-        transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease, opacity 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
-    }
-    .t-nav-btn:hover:not(:disabled) { background: #861330; color: white; border-color: #861330; transform: scale(1.08); box-shadow: 0 4px 12px rgba(134,19,48,0.2); }
-    .t-nav-btn:disabled { opacity: 0.35; cursor: default; }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
 
-    /* Left Scroll Dots */
-    .scroll-dots-left {
-        position: fixed;
-        left: 1.25rem;
-        top: 50%;
-        transform: translateY(-50%);
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
-        z-index: 100;
-        pointer-events: none;
-    }
-    .scroll-dot {
-        width: 5px;
-        height: 5px;
-        border-radius: 50%;
-        background: rgba(134,19,48,0.2);
-        transition: background 0.4s ease, transform 0.4s ease;
-    }
-    .scroll-dot.active {
-        background: #861330;
-        transform: scale(1.4);
-    }
-    @media (max-width: 640px) { .scroll-dots-left { display: none; } }
+        /* Hero Stagger */
+        .hero-stagger>* {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: heroFadeIn 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+        }
 
-    /* Back to Top */
-    .back-to-top { opacity: 0; pointer-events: none; transition: opacity 0.3s ease-out; }
-    .back-to-top.visible { opacity: 1; pointer-events: auto; }
+        .hero-stagger>*:nth-child(1) {
+            animation-delay: 0.1s;
+        }
 
-    /* Hero Typewriter */
-    #hero-word-wrap { overflow: visible; vertical-align: baseline; display: inline; }
-    #hero-word {
-        display: inline;
-        border-right: 2px solid #861330;
-        animation: blink 0.7s step-end infinite;
-    }
-    #hero-word.done { border-right-color: transparent; animation: none; }
-    @keyframes blink {
-        50% { border-right-color: transparent; }
-    }
+        .hero-stagger>*:nth-child(2) {
+            animation-delay: 0.25s;
+        }
 
-    /* Label Badge */
-    .label-badge {
-        display: inline-flex;
-        align-items: center;
-        background: rgba(134,19,48,0.07);
-        border: 1px solid rgba(134,19,48,0.18);
-        border-radius: 12px;
-        padding: 5px 16px;
-        font-size: 0.68rem;
-        font-weight: 700;
-        letter-spacing: 0.22em;
-        text-transform: uppercase;
-        color: #861330;
-        margin-bottom: 1.25rem;
-    }
+        .hero-stagger>*:nth-child(3) {
+            animation-delay: 0.4s;
+        }
 
-    /* Pillar Card — Accent Header Style */
-    .pillar-card {
-        background: #ffffff;
-        border-radius: 20px;
-        overflow: hidden;
-        box-shadow: 0 4px 24px rgba(134,19,48,0.06), 0 1px 3px rgba(0,0,0,0.04);
-        transition: all 0.4s cubic-bezier(0.25,0.46,0.45,0.94);
-    }
-    .pillar-card:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 12px 40px rgba(134,19,48,0.12), 0 2px 6px rgba(0,0,0,0.04);
-    }
-    .pillar-card-accent {
-        background: linear-gradient(135deg, #861330 0%, #a62950 100%);
-        padding: 32px 32px 28px;
-        text-align: center;
-    }
-    .pillar-card:nth-child(2) .pillar-card-accent {
-        background: linear-gradient(135deg, #6b0f27 0%, #861330 100%);
-    }
-    .pillar-card:nth-child(3) .pillar-card-accent {
-        background: linear-gradient(135deg, #861330 0%, #b8405c 100%);
-    }
-    .pillar-card .pillar-num {
-        font-size: 3rem;
-        font-weight: 300;
-        color: rgba(255,255,255,0.3);
-        -webkit-text-fill-color: rgba(255,255,255,0.3);
-        background: none;
-        line-height: 1;
-        margin-bottom: 12px;
-    }
-    .pillar-card-accent h3 {
-        font-size: 1.05rem;
-        font-weight: 500;
-        color: #ffffff;
-        line-height: 1.4;
-    }
-    .pillar-card-body {
-        padding: 28px 32px 36px;
-    }
-    .pillar-card ul li span { color: #475569; }
+        .hero-stagger>*:nth-child(4) {
+            animation-delay: 0.55s;
+        }
 
-    /* Cycle Rings */
-    .cycle-ring-1 { transform-origin: 160px 160px; animation: spinCW 22s linear infinite; }
-    .cycle-ring-2 { transform-origin: 160px 160px; animation: spinCCW 16s linear infinite; }
-    .cycle-ring-3 { transform-origin: 160px 160px; animation: spinCW 11s linear infinite; }
-    @keyframes spinCW  { to { transform: rotate(360deg); } }
-    @keyframes spinCCW { to { transform: rotate(-360deg); } }
+        .hero-stagger>*:nth-child(5) {
+            animation-delay: 0.7s;
+        }
 
-    /* Custom Hamburger */
-    .hamburger-bar {
-        display: block;
-        width: 22px;
-        height: 1.5px;
-        background: currentColor;
-        border-radius: 2px;
-        transition: transform 0.35s cubic-bezier(0.76, 0, 0.24, 1),
-                    opacity 0.2s ease,
-                    width 0.3s ease;
-        transform-origin: center;
-    }
-    #menu-toggle.is-open .hamburger-bar:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-    #menu-toggle.is-open .hamburger-bar:nth-child(2) { opacity: 0; width: 0; }
-    #menu-toggle.is-open .hamburger-bar:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+        @keyframes heroFadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
-    /* Mobile Menu Fullscreen */
-    #mobile-menu-panel {
-        clip-path: inset(0 0 100% 0);
-        transition: clip-path 0.55s cubic-bezier(0.76, 0, 0.24, 1);
-    }
-    #mobile-menu-panel.menu-open { clip-path: inset(0 0 0% 0); }
-    .menu-nav-link {
-        opacity: 0;
-        transform: translateY(28px);
-        transition: opacity 0.45s ease, transform 0.45s ease, color 0.2s ease;
-    }
-    .menu-nav-link.visible { opacity: 1; transform: translateY(0); }
-    .menu-nav-link:nth-child(1) { transition-delay: 0.18s; }
-    .menu-nav-link:nth-child(2) { transition-delay: 0.26s; }
-    .menu-nav-link:nth-child(3) { transition-delay: 0.34s; }
-    .menu-cta-link {
-        opacity: 0;
-        transform: translateY(16px);
-        transition: opacity 0.4s ease 0.42s, transform 0.4s ease 0.42s;
-    }
-    .menu-cta-link.visible { opacity: 1; transform: translateY(0); }
+        /* Stagger children */
+        .stagger-children>* {
+            transition-delay: calc(var(--index, 0) * 0.1s);
+        }
 
-    /* Floating Z's */
-    .float-z {
-        position: fixed;
-        pointer-events: none;
-        z-index: 1;
-        font-family: 'Fraunces', serif;
-        font-style: italic;
-        color: #861330;
-        opacity: 0;
-        will-change: transform, opacity;
-        user-select: none;
-    }
-    @keyframes floatUp {
-        0%   { opacity: 0; transform: translateY(0) rotate(var(--rot-start)); }
-        12%  { opacity: var(--max-opacity); }
-        85%  { opacity: var(--max-opacity); }
-        100% { opacity: 0; transform: translateY(var(--travel)) rotate(var(--rot-end)); }
-    }
+        /* Scroll Indicator Bounce */
+        .scroll-indicator {
+            animation: scrollBounce 2s cubic-bezier(0.36, 0.07, 0.19, 0.97) infinite;
+        }
 
-    /* Reduced Motion */
-    @media (prefers-reduced-motion: reduce) {
-        .reveal { transition: opacity 0.3s ease; transform: none; }
-        .reveal.visible { transform: none; }
-        .hero-stagger > * { animation: heroFadeSimple 0.4s ease forwards; transform: none; }
-        @keyframes heroFadeSimple { to { opacity: 1; } }
-        .scroll-indicator { animation: none; }
-        button:active, a[role="button"]:active { transform: none; }
-        .card-hover:hover { transform: none; }
-        .tl-event { transform: none; }
-        .tl-event.visible { transform: none; }
-        .tl-dot.active::after { animation: none; }
-        .tl-mobile-event { transform: none; }
-        .ambient-blob { animation: none; }
-        .cycle-ring-1, .cycle-ring-2, .cycle-ring-3 { animation: none; }
-        .hero-mesh::before { animation: none; }
-        .card-glass:hover { transform: none; }
-        .stagger-card { transition: none; }
-    }
-</style>
+        @keyframes scrollBounce {
+
+            0%,
+            100% {
+                transform: translate(-50%, 0);
+            }
+
+            50% {
+                transform: translate(-50%, 6px);
+            }
+        }
+
+        /* Button Press */
+        button,
+        a[role="button"],
+        .btn {
+            transition: transform 0.15s ease-out, background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+        }
+
+        button:active,
+        a[role="button"]:active,
+        .btn:active {
+            transform: scale(0.97);
+        }
+
+        /* Card Hover */
+        .card-hover {
+            transition: transform 0.2s ease-out, border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(134, 19, 48, 0.08);
+        }
+
+        /* Focus */
+        a:focus-visible,
+        button:focus-visible,
+        summary:focus-visible,
+        [tabindex]:focus-visible {
+            outline: 2px solid #861330;
+            outline-offset: 2px;
+            border-radius: 4px;
+        }
+
+        /* Skip Link */
+        .skip-link {
+            position: absolute;
+            top: -100%;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 100;
+            background: #861330;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0 0 0.5rem 0.5rem;
+            font-weight: bold;
+            font-size: 0.875rem;
+        }
+
+        .skip-link:focus {
+            top: 0;
+        }
+
+        /* Timeline */
+        .tl-section {
+            background: #F8F6F4;
+        }
+
+        .tl-line-track {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background: rgba(134, 19, 48, 0.1);
+        }
+
+        .tl-line-fill {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 0%;
+            background: linear-gradient(to bottom, #861330, #861330 80%, transparent);
+            transition: height 0.05s linear;
+            will-change: height;
+        }
+
+        .tl-dot {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #fff;
+            border: 2px solid rgba(134, 19, 48, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+            z-index: 2;
+        }
+
+        .tl-dot-num {
+            font-family: 'Fraunces', serif;
+            font-size: 15px;
+            font-weight: 600;
+            color: rgba(134, 19, 48, 0.3);
+            transition: color 0.4s ease;
+            line-height: 1;
+        }
+
+        .tl-dot.active {
+            background: #861330;
+            border-color: #861330;
+            box-shadow: 0 0 0 6px rgba(134, 19, 48, 0.15), 0 0 20px rgba(134, 19, 48, 0.2);
+        }
+
+        .tl-dot.active .tl-dot-num {
+            color: #fff;
+        }
+
+        .tl-dot.active::after {
+            content: '';
+            position: absolute;
+            inset: -8px;
+            border-radius: 50%;
+            border: 1px solid rgba(134, 19, 48, 0.2);
+            animation: dotPulse 2s ease-out infinite;
+        }
+
+        @keyframes dotPulse {
+            0% {
+                transform: scale(1);
+                opacity: 0.6;
+            }
+
+            100% {
+                transform: scale(2.2);
+                opacity: 0;
+            }
+        }
+
+        .tl-event {
+            opacity: 0;
+            transition: opacity 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            will-change: transform, opacity;
+        }
+
+        .tl-event.from-left {
+            transform: translateX(-40px);
+        }
+
+        .tl-event.from-right {
+            transform: translateX(40px);
+        }
+
+        .tl-event.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Scroll Progress Nav */
+        .tl-scroll-nav {
+            position: fixed;
+            right: 2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            z-index: 40;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            pointer-events: none;
+        }
+
+        .tl-scroll-nav.visible {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .tl-nav-track-line {
+            position: absolute;
+            width: 2px;
+            top: 0;
+            bottom: 0;
+            background: rgba(134, 19, 48, 0.08);
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 1px;
+        }
+
+        .tl-nav-dot {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: #fff;
+            border: 2px solid rgba(134, 19, 48, 0.12);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            position: relative;
+            z-index: 2;
+            transition: all 0.4s ease;
+            padding: 0;
+            font-family: 'Fraunces', serif;
+            font-size: 12px;
+            font-weight: 600;
+            color: rgba(134, 19, 48, 0.3);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+        }
+
+        .tl-nav-dot.active {
+            background: #861330;
+            border-color: #861330;
+            color: #fff;
+            box-shadow: 0 2px 12px rgba(134, 19, 48, 0.3);
+        }
+
+        .tl-nav-label {
+            position: absolute;
+            right: 100%;
+            margin-right: 12px;
+            white-space: nowrap;
+            font-family: 'Inter', sans-serif;
+            font-size: 12px;
+            font-weight: 500;
+            color: #861330;
+            opacity: 0;
+            transform: translateX(8px);
+            transition: all 0.3s ease;
+            pointer-events: none;
+        }
+
+        .tl-nav-dot.active .tl-nav-label {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Mobile Timeline */
+        .tl-mobile-line-track {
+            position: absolute;
+            left: 13px;
+            top: 0;
+            width: 2px;
+            height: 100%;
+            background: rgba(134, 19, 48, 0.1);
+        }
+
+        .tl-mobile-line-fill {
+            position: absolute;
+            left: 13px;
+            top: 0;
+            width: 2px;
+            height: 0%;
+            background: linear-gradient(to bottom, #861330, #861330 80%, transparent);
+            transition: height 0.05s linear;
+            will-change: height;
+        }
+
+        .tl-mobile-dot {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: #fff;
+            border: 2px solid rgba(134, 19, 48, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            z-index: 2;
+        }
+
+        .tl-mobile-dot-num {
+            font-family: 'Fraunces', serif;
+            font-size: 11px;
+            font-weight: 600;
+            color: rgba(134, 19, 48, 0.3);
+            transition: color 0.4s ease;
+            line-height: 1;
+        }
+
+        .tl-mobile-dot.active {
+            background: #861330;
+            border-color: #861330;
+            box-shadow: 0 0 0 4px rgba(134, 19, 48, 0.15), 0 0 12px rgba(134, 19, 48, 0.2);
+        }
+
+        .tl-mobile-dot.active .tl-mobile-dot-num {
+            color: #fff;
+        }
+
+        .tl-mobile-event {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+        }
+
+        .tl-mobile-event.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 767px) {
+            .tl-desktop {
+                display: none;
+            }
+
+            .tl-mobile {
+                display: block;
+            }
+
+            .tl-scroll-nav {
+                right: 0.75rem;
+                gap: 14px;
+            }
+
+            .tl-nav-dot {
+                width: 26px;
+                height: 26px;
+                font-size: 10px;
+            }
+
+            .tl-nav-label {
+                display: none;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .tl-desktop {
+                display: block;
+            }
+
+            .tl-mobile {
+                display: none;
+            }
+        }
+
+        /* Testimonials Carousel */
+        .t-outer {
+            overflow: hidden;
+            width: 100%;
+        }
+
+        .t-track {
+            display: flex;
+            gap: 1.5rem;
+            transition: transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            will-change: transform;
+        }
+
+        .t-card {
+            flex-shrink: 0;
+            background: white;
+            border: 1px solid rgba(134, 19, 48, 0.12);
+            padding: 1.75rem 2rem;
+            position: relative;
+            border-radius: 0.5rem;
+            transition: border-color 0.2s ease;
+            overflow: hidden;
+            word-break: break-word;
+            box-sizing: border-box;
+        }
+
+        .t-card:hover {
+            border-color: rgba(134, 19, 48, 0.25);
+        }
+
+        .t-stars {
+            display: flex;
+            gap: 2px;
+            margin-bottom: 1rem;
+            color: #861330;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+        }
+
+        .t-quote {
+            font-style: italic;
+            font-size: 0.92rem;
+            line-height: 1.75;
+            color: #475569;
+            margin-bottom: 1.25rem;
+        }
+
+        .t-author {
+            font-size: 0.78rem;
+            color: #861330;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            border-top: 1px solid rgba(134, 19, 48, 0.08);
+            padding-top: 0.875rem;
+            margin-top: auto;
+        }
+
+        .t-nav-btn {
+            width: 2.75rem;
+            height: 2.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: white;
+            border: 1px solid rgba(134, 19, 48, 0.15);
+            border-radius: 0.375rem;
+            cursor: pointer;
+            color: #861330;
+            transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease, opacity 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .t-nav-btn:hover:not(:disabled) {
+            background: #861330;
+            color: white;
+            border-color: #861330;
+            transform: scale(1.08);
+            box-shadow: 0 4px 12px rgba(134, 19, 48, 0.2);
+        }
+
+        .t-nav-btn:disabled {
+            opacity: 0.35;
+            cursor: default;
+        }
+
+        /* Left Scroll Dots */
+        .scroll-dots-left {
+            position: fixed;
+            left: 1.25rem;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            z-index: 100;
+            pointer-events: none;
+        }
+
+        .scroll-dot {
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: rgba(134, 19, 48, 0.2);
+            transition: background 0.4s ease, transform 0.4s ease;
+        }
+
+        .scroll-dot.active {
+            background: #861330;
+            transform: scale(1.4);
+        }
+
+        @media (max-width: 640px) {
+            .scroll-dots-left {
+                display: none;
+            }
+        }
+
+        /* Back to Top */
+        .back-to-top {
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease-out;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        /* Hero Typewriter */
+        #hero-word-wrap {
+            overflow: visible;
+            vertical-align: baseline;
+            display: inline;
+        }
+
+        #hero-word {
+            display: inline;
+            border-right: 2px solid #861330;
+            animation: blink 0.7s step-end infinite;
+        }
+
+        #hero-word.done {
+            border-right-color: transparent;
+            animation: none;
+        }
+
+        @keyframes blink {
+            50% {
+                border-right-color: transparent;
+            }
+        }
+
+        /* Label Badge */
+        .label-badge {
+            display: inline-flex;
+            align-items: center;
+            background: rgba(134, 19, 48, 0.07);
+            border: 1px solid rgba(134, 19, 48, 0.18);
+            border-radius: 12px;
+            padding: 5px 16px;
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: #861330;
+            margin-bottom: 1.25rem;
+        }
+
+        /* Pillar Card — Accent Header Style */
+        .pillar-card {
+            background: #ffffff;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 4px 24px rgba(134, 19, 48, 0.06), 0 1px 3px rgba(0, 0, 0, 0.04);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .pillar-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(134, 19, 48, 0.12), 0 2px 6px rgba(0, 0, 0, 0.04);
+        }
+
+        .pillar-card-accent {
+            background: linear-gradient(135deg, #861330 0%, #a62950 100%);
+            padding: 32px 32px 28px;
+            text-align: center;
+        }
+
+        .pillar-card:nth-child(2) .pillar-card-accent {
+            background: linear-gradient(135deg, #6b0f27 0%, #861330 100%);
+        }
+
+        .pillar-card:nth-child(3) .pillar-card-accent {
+            background: linear-gradient(135deg, #861330 0%, #b8405c 100%);
+        }
+
+        .pillar-card .pillar-num {
+            font-size: 3rem;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.3);
+            -webkit-text-fill-color: rgba(255, 255, 255, 0.3);
+            background: none;
+            line-height: 1;
+            margin-bottom: 12px;
+        }
+
+        .pillar-card-accent h3 {
+            font-size: 1.05rem;
+            font-weight: 500;
+            color: #ffffff;
+            line-height: 1.4;
+        }
+
+        .pillar-card-body {
+            padding: 28px 32px 36px;
+        }
+
+        .pillar-card ul li span {
+            color: #475569;
+        }
+
+        /* Cycle Rings */
+        .cycle-ring-1 {
+            transform-origin: 160px 160px;
+            animation: spinCW 22s linear infinite;
+        }
+
+        .cycle-ring-2 {
+            transform-origin: 160px 160px;
+            animation: spinCCW 16s linear infinite;
+        }
+
+        .cycle-ring-3 {
+            transform-origin: 160px 160px;
+            animation: spinCW 11s linear infinite;
+        }
+
+        @keyframes spinCW {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes spinCCW {
+            to {
+                transform: rotate(-360deg);
+            }
+        }
+
+        /* Custom Hamburger */
+        .hamburger-bar {
+            display: block;
+            width: 22px;
+            height: 1.5px;
+            background: currentColor;
+            border-radius: 2px;
+            transition: transform 0.35s cubic-bezier(0.76, 0, 0.24, 1),
+                opacity 0.2s ease,
+                width 0.3s ease;
+            transform-origin: center;
+        }
+
+        #menu-toggle.is-open .hamburger-bar:nth-child(1) {
+            transform: translateY(7px) rotate(45deg);
+        }
+
+        #menu-toggle.is-open .hamburger-bar:nth-child(2) {
+            opacity: 0;
+            width: 0;
+        }
+
+        #menu-toggle.is-open .hamburger-bar:nth-child(3) {
+            transform: translateY(-7px) rotate(-45deg);
+        }
+
+        /* Mobile Menu Fullscreen */
+        #mobile-menu-panel {
+            clip-path: inset(0 0 100% 0);
+            transition: clip-path 0.55s cubic-bezier(0.76, 0, 0.24, 1);
+        }
+
+        #mobile-menu-panel.menu-open {
+            clip-path: inset(0 0 0% 0);
+        }
+
+        .menu-nav-link {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.45s ease, transform 0.45s ease, color 0.2s ease;
+        }
+
+        .menu-nav-link.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .menu-nav-link:nth-child(1) {
+            transition-delay: 0.18s;
+        }
+
+        .menu-nav-link:nth-child(2) {
+            transition-delay: 0.26s;
+        }
+
+        .menu-nav-link:nth-child(3) {
+            transition-delay: 0.34s;
+        }
+
+        .menu-cta-link {
+            opacity: 0;
+            transform: translateY(16px);
+            transition: opacity 0.4s ease 0.42s, transform 0.4s ease 0.42s;
+        }
+
+        .menu-cta-link.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+
+
+        /* Reduced Motion */
+        @media (prefers-reduced-motion: reduce) {
+            .reveal {
+                transition: opacity 0.3s ease;
+                transform: none;
+            }
+
+            .reveal.visible {
+                transform: none;
+            }
+
+            .hero-stagger>* {
+                animation: heroFadeSimple 0.4s ease forwards;
+                transform: none;
+            }
+
+            @keyframes heroFadeSimple {
+                to {
+                    opacity: 1;
+                }
+            }
+
+            .scroll-indicator {
+                animation: none;
+            }
+
+            button:active,
+            a[role="button"]:active {
+                transform: none;
+            }
+
+            .card-hover:hover {
+                transform: none;
+            }
+
+            .tl-event {
+                transform: none;
+            }
+
+            .tl-event.visible {
+                transform: none;
+            }
+
+            .tl-dot.active::after {
+                animation: none;
+            }
+
+            .tl-mobile-event {
+                transform: none;
+            }
+
+            .ambient-blob {
+                animation: none;
+            }
+
+            .cycle-ring-1,
+            .cycle-ring-2,
+            .cycle-ring-3 {
+                animation: none;
+            }
+
+            .hero-mesh::before {
+                animation: none;
+            }
+
+            .card-glass:hover {
+                transform: none;
+            }
+
+            .stagger-card {
+                transition: none;
+            }
+        }
+    </style>
 </head>
+
 <body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 selection:bg-primary/20">
 
-<!-- Left Scroll Dots -->
-<div class="scroll-dots-left" id="scroll-dots" aria-hidden="true">
-    <div class="scroll-dot"></div>
-    <div class="scroll-dot"></div>
-    <div class="scroll-dot"></div>
-    <div class="scroll-dot"></div>
-    <div class="scroll-dot"></div>
-    <div class="scroll-dot"></div>
-    <div class="scroll-dot"></div>
-    <div class="scroll-dot"></div>
-</div>
-
-<!-- Ambient Floating Blobs -->
-<div class="ambient-blob" aria-hidden="true"></div>
-<div class="ambient-blob" aria-hidden="true"></div>
-<div class="ambient-blob" aria-hidden="true"></div>
-
-<!-- Skip Link -->
-<a class="skip-link" href="#main-content">Zum Inhalt springen</a>
-
-<!-- Header -->
-<header class="sticky top-0 z-50 w-full bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-primary/10">
-<div class="max-w-7xl mx-auto px-6 h-12 flex items-center justify-between">
-<a href="#"><img src="LOGOREAL.svg" alt="zZzlim®" class="h-9 w-auto" style="filter: invert(1);" /></a>
-<nav class="hidden md:flex items-center gap-10 text-sm font-medium">
-<a class="hover:text-primary transition-colors cursor-pointer" href="#ursachen">Ursachen</a>
-<a class="hover:text-primary transition-colors cursor-pointer" href="#wirkung">Wirkung</a>
-<a class="hover:text-primary transition-colors cursor-pointer" href="#faq">Anwendung</a>
-</nav>
-<div class="flex items-center gap-3">
-<a href="https://zzzlim.de/products/zzzlim%C2%AE-monatskur-30-kapseln" class="bg-primary text-white px-5 py-2 rounded-full font-bold text-xs uppercase tracking-wider hover:bg-primary/90 cursor-pointer hidden md:flex items-center gap-2">
-    SHOP <i data-lucide="shopping-bag" class="w-4 h-4"></i>
-</a>
-<button id="menu-toggle" class="md:hidden flex flex-col items-center justify-center gap-[6px] w-10 h-10 rounded-lg hover:bg-primary/5 cursor-pointer" aria-label="Menü öffnen" aria-expanded="false">
-    <span class="hamburger-bar"></span>
-    <span class="hamburger-bar"></span>
-    <span class="hamburger-bar"></span>
-</button>
-</div>
-</div>
-</header>
-
-<!-- Mobile Menu Fullscreen -->
-<div id="mobile-menu" class="fixed inset-0 z-[60] pointer-events-none" aria-hidden="true">
-<div id="mobile-menu-panel" class="absolute inset-0 bg-background-dark flex flex-col">
-
-    <!-- Panel header -->
-    <div class="flex items-center justify-between px-6 h-12 flex-shrink-0">
-        <img src="LOGOREAL.svg" alt="zZzlim®" class="h-7 w-auto opacity-80" />
-        <button id="menu-close" class="flex flex-col items-center justify-center gap-[6px] w-10 h-10 rounded-lg cursor-pointer text-white is-open" aria-label="Menü schließen" style="color: white;">
-            <span class="hamburger-bar" style="transform: translateY(7px) rotate(45deg);"></span>
-            <span class="hamburger-bar" style="opacity:0; width:0;"></span>
-            <span class="hamburger-bar" style="transform: translateY(-7px) rotate(-45deg);"></span>
-        </button>
-    </div>
-    <div class="h-px bg-primary/30 mx-6"></div>
-
-    <!-- Nav links centered -->
-    <nav class="flex-1 flex flex-col items-center justify-center gap-2">
-        <a class="menu-nav-link text-white hover:text-primary font-medium text-4xl tracking-tight cursor-pointer py-2" href="#ursachen">Ursachen</a>
-        <a class="menu-nav-link text-white hover:text-primary font-medium text-4xl tracking-tight cursor-pointer py-2" href="#wirkung">Wirkung</a>
-        <a class="menu-nav-link text-white hover:text-primary font-medium text-4xl tracking-tight cursor-pointer py-2" href="#faq">Anwendung</a>
-    </nav>
-
-    <!-- CTA -->
-    <div class="px-6 pb-12">
-        <a href="https://zzzlim.de/products/zzzlim%C2%AE-monatskur-30-kapseln" class="menu-cta-link bg-primary text-white px-6 py-4 rounded-full font-bold text-sm uppercase tracking-wider flex items-center justify-center gap-2 hover:bg-primary/90">
-            SHOP <i data-lucide="shopping-bag" class="w-4 h-4"></i>
-        </a>
+    <!-- Left Scroll Dots -->
+    <div class="scroll-dots-left" id="scroll-dots" aria-hidden="true">
+        <div class="scroll-dot"></div>
+        <div class="scroll-dot"></div>
+        <div class="scroll-dot"></div>
+        <div class="scroll-dot"></div>
+        <div class="scroll-dot"></div>
+        <div class="scroll-dot"></div>
+        <div class="scroll-dot"></div>
+        <div class="scroll-dot"></div>
     </div>
 
-</div>
-</div>
 
-<!-- HERO -->
-<section id="main-content" class="hero-mesh relative h-[calc(100dvh-3rem)] flex flex-col items-center justify-center text-center overflow-hidden">
-<div class="hero-stagger max-w-3xl mx-auto px-6 relative z-10">
-<h1 class="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-medium leading-[0.95] tracking-tight mb-1 whitespace-nowrap">Schlaf ist keine Pause.</h1>
-<p class="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-medium italic text-primary leading-[0.95] tracking-tight mb-6">Schlaf ist <span id="hero-word-wrap"><span id="hero-word"></span></span></p>
-<p class="text-lg md:text-xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed mb-7">
-    Wenn du nachts hellwach bist oder morgens gerädert aufwachst, liegt das oft nicht an dir – sondern an deinem Nervensystem und deiner Abendroutine.
-</p>
-<div class="flex flex-wrap justify-center gap-4 mb-7">
-<a href="https://zzzlim.de/products/zzzlim%C2%AE-monatskur-30-kapseln" class="cta-glow bg-primary text-white px-8 py-3 rounded-lg font-bold text-base hover:bg-primary/90 cursor-pointer">
-    In Ruhe ausprobieren
-</a>
-</div>
-</div>
-<!-- Scroll Indicator -->
-<a href="#ursachen" class="scroll-indicator absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center text-primary text-[10px] font-bold uppercase tracking-[0.2em] no-underline hover:opacity-80 transition-opacity" id="scroll-indicator">
-    Warum das passiert
-    <i data-lucide="chevron-down" class="w-4 h-4 mt-1"></i>
-</a>
-</section>
 
-<!-- PROBLEM IDENTIFICATION -->
-<section id="ursachen" class="shader-warm py-12 md:py-24 relative overflow-hidden">
-<!-- Decorative cycle rings -->
-<div class="absolute right-0 bottom-0 translate-x-1/3 translate-y-1/3 pointer-events-none select-none" aria-hidden="true">
-<svg width="340" height="340" viewBox="0 0 320 320" fill="none" xmlns="http://www.w3.org/2000/svg" style="opacity:0.08;">
-<circle cx="160" cy="160" r="145" stroke="#861330" stroke-width="1.5" stroke-dasharray="14 7" class="cycle-ring-1"/>
-<circle cx="160" cy="160" r="104" stroke="#861330" stroke-width="2" stroke-dasharray="9 9" class="cycle-ring-2"/>
-<circle cx="160" cy="160" r="62" stroke="#861330" stroke-width="1.5" stroke-dasharray="6 6" class="cycle-ring-3"/>
-<!-- Arrow tip on outer ring -->
-<path d="M160 15 L166 27 L154 27 Z" fill="#861330" class="cycle-ring-1"/>
-</svg>
-</div>
-<div class="max-w-7xl mx-auto px-6">
-<div class="reveal max-w-2xl mx-auto text-center mb-8 md:mb-16">
-<span class="label-badge">Das Problem</span>
-<h2 class="text-4xl md:text-5xl font-medium mt-4 mb-6">Viele kennen diese Nächte</h2>
-<p class="text-lg text-slate-600 dark:text-slate-400 leading-relaxed">
-    Du bist müde, freust dich aufs Bett – und liegst trotzdem wach. Oder du schläfst ein und wachst mitten in der Nacht wieder auf.
-</p>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 items-stretch">
-<div class="reveal card-glass p-8 rounded-xl text-center cursor-default flex flex-col items-center" style="--index: 0">
-<i data-lucide="brain" class="w-8 h-8 text-primary mb-6 shrink-0"></i>
-<h3 class="text-xl font-bold mb-3">Todmüde – aber Kopf hellwach</h3>
-<p class="text-slate-600 dark:text-slate-400 leading-relaxed">Der Körper will schlafen, aber das Nervensystem kommt nicht zur Ruhe.</p>
-</div>
-<div class="reveal card-glass p-8 rounded-xl text-center cursor-default flex flex-col items-center" style="--index: 1">
-<i data-lucide="alarm-clock" class="w-8 h-8 text-primary mb-6 shrink-0"></i>
-<h3 class="text-xl font-bold mb-3">Nachts zwischen 2–4 Uhr wach</h3>
-<p class="text-slate-600 dark:text-slate-400 leading-relaxed">Das klassische Durchschlafproblem – jede Nacht derselbe Rhythmus.</p>
-</div>
-<div class="reveal card-glass p-8 rounded-xl text-center cursor-default flex flex-col items-center" style="--index: 2">
-<i data-lucide="infinity" class="w-8 h-8 text-primary mb-6 shrink-0"></i>
-<h3 class="text-xl font-bold mb-3">Gedankenkarussell im Bett</h3>
-<p class="text-slate-600 dark:text-slate-400 leading-relaxed">To-Do-Listen, Sorgen, Grübeleien – der Geist will einfach nicht abschalten.</p>
-</div>
-<div class="reveal card-glass p-8 rounded-xl text-center cursor-default flex flex-col items-center" style="--index: 3">
-<i data-lucide="battery-low" class="w-8 h-8 text-primary mb-6 shrink-0"></i>
-<h3 class="text-xl font-bold mb-3">Morgens gerädert aufwachen</h3>
-<p class="text-slate-600 dark:text-slate-400 leading-relaxed">Der Wecker klingelt und du fühlst dich schwerer als am Vorabend.</p>
-</div>
-</div>
-<p class="reveal text-center text-xl italic text-slate-600 dark:text-slate-400 mt-8 md:mt-16">Du bist damit nicht allein.</p>
-</div>
-</section>
+    <!-- Skip Link -->
+    <a class="skip-link" href="#main-content">Zum Inhalt springen</a>
 
-<!-- Wave: Problem → Timeline -->
-<div class="wave-divider" aria-hidden="true">
-<svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M0,40 C360,70 720,0 1440,40 L1440,60 L0,60 Z" fill="rgba(134,19,48,0.03)"/>
-</svg>
-</div>
+    <!-- Header -->
+    <header
+        class="sticky top-0 z-50 w-full bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-primary/10">
+        <div class="max-w-7xl mx-auto px-6 h-12 flex items-center justify-between">
+            <a href="#"><img src="LOGOREAL.svg" alt="zZzlim®" class="h-9 w-auto" style="filter: invert(1);" /></a>
+            <nav class="hidden md:flex items-center gap-10 text-sm font-medium">
+                <a class="hover:text-primary transition-colors cursor-pointer" href="#ursachen">Ursachen</a>
+                <a class="hover:text-primary transition-colors cursor-pointer" href="#wirkung">Wirkung</a>
+                <a class="hover:text-primary transition-colors cursor-pointer" href="#faq">Anwendung</a>
+            </nav>
+            <div class="flex items-center gap-3">
+                <a href="https://zzzlim.de/products/zzzlim%C2%AE-monatskur-30-kapseln"
+                    class="bg-primary text-white px-5 py-2 rounded-full font-bold text-xs uppercase tracking-wider hover:bg-primary/90 cursor-pointer hidden md:flex items-center gap-2">
+                    SHOP <i data-lucide="shopping-bag" class="w-4 h-4"></i>
+                </a>
+                <button id="menu-toggle"
+                    class="md:hidden flex flex-col items-center justify-center gap-[6px] w-10 h-10 rounded-lg hover:bg-primary/5 cursor-pointer"
+                    aria-label="Menü öffnen" aria-expanded="false">
+                    <span class="hamburger-bar"></span>
+                    <span class="hamburger-bar"></span>
+                    <span class="hamburger-bar"></span>
+                </button>
+            </div>
+        </div>
+    </header>
 
-<!-- WAS IM SCHLAF PASSIERT -->
-<section class="tl-section py-16 md:py-32 overflow-hidden" id="timeline-section">
-<div class="max-w-5xl mx-auto px-6 relative">
-<div class="reveal text-center mb-12 md:mb-28">
-<span class="label-badge">Was im Schlaf passiert</span>
-<h2 class="text-4xl md:text-5xl font-medium mb-6">Schlaf ist keine passive Pause.</h2>
-<p class="text-slate-600 dark:text-slate-400 text-lg max-w-3xl mx-auto leading-relaxed">
-    Während der Nacht laufen im Körper zahlreiche Prozesse ab, die für Regeneration und Erholung entscheidend sind.
-</p>
-</div>
+    <!-- Mobile Menu Fullscreen -->
+    <div id="mobile-menu" class="fixed inset-0 z-[60] pointer-events-none" aria-hidden="true">
+        <div id="mobile-menu-panel" class="absolute inset-0 bg-background-dark flex flex-col">
 
-<!-- Desktop Timeline -->
-<div class="tl-desktop relative" id="tl-desktop">
-<div class="tl-line-track"></div>
-<div class="tl-line-fill" id="tl-line-fill"></div>
+            <!-- Panel header -->
+            <div class="flex items-center justify-between px-6 h-12 flex-shrink-0">
+                <img src="LOGOREAL.svg" alt="zZzlim®" class="h-7 w-auto opacity-80" />
+                <button id="menu-close"
+                    class="flex flex-col items-center justify-center gap-[6px] w-10 h-10 rounded-lg cursor-pointer text-white is-open"
+                    aria-label="Menü schließen" style="color: white;">
+                    <span class="hamburger-bar" style="transform: translateY(7px) rotate(45deg);"></span>
+                    <span class="hamburger-bar" style="opacity:0; width:0;"></span>
+                    <span class="hamburger-bar" style="transform: translateY(-7px) rotate(-45deg);"></span>
+                </button>
+            </div>
+            <div class="h-px bg-primary/30 mx-6"></div>
 
-<!-- Event 1: Left – Nervensystem -->
-<div class="relative flex items-center mb-40 w-full" data-tl-event>
-<div class="tl-event from-left w-[45%] text-right pr-16">
-<div class="flex items-center justify-end gap-4 mb-4">
-<div class="tl-icon-ring"><i data-lucide="zap" class="w-5 h-5 text-primary"></i></div>
-<span class="tl-time">01</span>
-</div>
-<h4 class="text-2xl font-bold mb-2">Nervensystem</h4>
-<p class="text-slate-600 dark:text-slate-400 text-lg italic leading-relaxed">Das Nervensystem fährt Schritt für Schritt herunter und wechselt vom Aktivitäts- in den Ruhemodus.</p>
-</div>
-<div class="absolute left-1/2 -translate-x-1/2 flex items-center justify-center" aria-hidden="true">
-<div class="tl-dot" data-tl-dot></div>
-</div>
-<div class="w-[45%]"></div>
-</div>
+            <!-- Nav links centered -->
+            <nav class="flex-1 flex flex-col items-center justify-center gap-2">
+                <a class="menu-nav-link text-white hover:text-primary font-medium text-4xl tracking-tight cursor-pointer py-2"
+                    href="#ursachen">Ursachen</a>
+                <a class="menu-nav-link text-white hover:text-primary font-medium text-4xl tracking-tight cursor-pointer py-2"
+                    href="#wirkung">Wirkung</a>
+                <a class="menu-nav-link text-white hover:text-primary font-medium text-4xl tracking-tight cursor-pointer py-2"
+                    href="#faq">Anwendung</a>
+            </nav>
 
-<!-- Event 2: Right – Mentale Erholung -->
-<div class="relative flex items-center mb-40 w-full" data-tl-event>
-<div class="w-[45%]"></div>
-<div class="absolute left-1/2 -translate-x-1/2 flex items-center justify-center" aria-hidden="true">
-<div class="tl-dot" data-tl-dot></div>
-</div>
-<div class="tl-event from-right w-[45%] pl-16">
-<div class="flex items-center gap-4 mb-4">
-<span class="tl-time">02</span>
-<div class="tl-icon-ring"><i data-lucide="sparkles" class="w-5 h-5 text-primary"></i></div>
-</div>
-<h4 class="text-2xl font-bold mb-2">Mentale Erholung</h4>
-<p class="text-slate-600 dark:text-slate-400 text-lg italic leading-relaxed">Das Gehirn verarbeitet Eindrücke des Tages und unterstützt die mentale Erholung.</p>
-</div>
-</div>
+            <!-- CTA -->
+            <div class="px-6 pb-12">
+                <a href="https://zzzlim.de/products/zzzlim%C2%AE-monatskur-30-kapseln"
+                    class="menu-cta-link bg-primary text-white px-6 py-4 rounded-full font-bold text-sm uppercase tracking-wider flex items-center justify-center gap-2 hover:bg-primary/90">
+                    SHOP <i data-lucide="shopping-bag" class="w-4 h-4"></i>
+                </a>
+            </div>
 
-<!-- Event 3: Left – Hormonelle Prozesse -->
-<div class="relative flex items-center mb-40 w-full" data-tl-event>
-<div class="tl-event from-left w-[45%] text-right pr-16">
-<div class="flex items-center justify-end gap-4 mb-4">
-<div class="tl-icon-ring"><i data-lucide="dna" class="w-5 h-5 text-primary"></i></div>
-<span class="tl-time">03</span>
-</div>
-<h4 class="text-2xl font-bold mb-2">Hormonelle Prozesse</h4>
-<p class="text-slate-600 dark:text-slate-400 text-lg italic leading-relaxed">Hormonelle Prozesse folgen einem natürlichen Rhythmus. Der Körper stellt wichtige Signale um, die eng mit Regeneration und Energiehaushalt verbunden sind.</p>
-</div>
-<div class="absolute left-1/2 -translate-x-1/2 flex items-center justify-center" aria-hidden="true">
-<div class="tl-dot" data-tl-dot></div>
-</div>
-<div class="w-[45%]"></div>
-</div>
-
-<!-- Event 4: Right – Abendsignale -->
-<div class="relative flex items-center w-full" data-tl-event>
-<div class="w-[45%]"></div>
-<div class="absolute left-1/2 -translate-x-1/2 flex items-center justify-center" aria-hidden="true">
-<div class="tl-dot" data-tl-dot></div>
-</div>
-<div class="tl-event from-right w-[45%] pl-16">
-<div class="flex items-center gap-4 mb-4">
-<span class="tl-time">04</span>
-<div class="tl-icon-ring"><i data-lucide="moon-star" class="w-5 h-5 text-primary"></i></div>
-</div>
-<h4 class="text-2xl font-bold mb-2">Vorbereitung am Abend</h4>
-<p class="text-slate-600 dark:text-slate-400 text-lg italic leading-relaxed">Viele dieser Abläufe beginnen nicht erst im Bett. Sie starten bereits Stunden davor – mit den Signalen, die wir unserem Körper am Abend senden.</p>
-</div>
-</div>
-</div>
-
-<!-- Mobile Timeline -->
-<div class="tl-mobile relative pl-10" id="tl-mobile">
-<div class="tl-mobile-line-track"></div>
-<div class="tl-mobile-line-fill" id="tl-mobile-line-fill"></div>
-
-<div class="flex gap-4 mb-10 items-start" data-tl-mobile-event>
-<div class="tl-mobile-dot mt-3" data-tl-mobile-dot></div>
-<div class="tl-mobile-event">
-<h4 class="text-lg font-bold mb-1">Nervensystem</h4>
-<p class="text-slate-600 dark:text-slate-400 italic text-sm leading-relaxed">Das Nervensystem fährt Schritt für Schritt herunter und wechselt vom Aktivitäts- in den Ruhemodus.</p>
-</div>
-</div>
-<div class="flex gap-4 mb-10 items-start" data-tl-mobile-event>
-<div class="tl-mobile-dot mt-3" data-tl-mobile-dot></div>
-<div class="tl-mobile-event">
-<h4 class="text-lg font-bold mb-1">Mentale Erholung</h4>
-<p class="text-slate-600 dark:text-slate-400 italic text-sm leading-relaxed">Das Gehirn verarbeitet Eindrücke des Tages und unterstützt die mentale Erholung.</p>
-</div>
-</div>
-<div class="flex gap-4 mb-10 items-start" data-tl-mobile-event>
-<div class="tl-mobile-dot mt-3" data-tl-mobile-dot></div>
-<div class="tl-mobile-event">
-<h4 class="text-lg font-bold mb-1">Hormonelle Prozesse</h4>
-<p class="text-slate-600 dark:text-slate-400 italic text-sm leading-relaxed">Der Körper stellt wichtige Signale um, die eng mit Regeneration und Energiehaushalt verbunden sind.</p>
-</div>
-</div>
-<div class="flex gap-4 items-start" data-tl-mobile-event>
-<div class="tl-mobile-dot mt-3" data-tl-mobile-dot></div>
-<div class="tl-mobile-event">
-<h4 class="text-lg font-bold mb-1">Vorbereitung am Abend</h4>
-<p class="text-slate-600 dark:text-slate-400 italic text-sm leading-relaxed">Viele dieser Abläufe beginnen nicht erst im Bett – sondern Stunden davor.</p>
-</div>
-</div>
-</div>
-
-</div>
-</section>
-
-<!-- Wave: Timeline → Dark Section -->
-<div class="wave-divider" style="margin-top:-2px; background:#1a0d11;" aria-hidden="true">
-<svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" style="display:block;">
-<path d="M0,20 C480,60 960,0 1440,30 L1440,60 L0,60 Z" fill="#1a0d11"/>
-</svg>
-</div>
-
-<!-- UNSER MODERNER ABEND -->
-<section class="section-dark relative py-32 md:py-40 px-6 overflow-hidden flex items-center justify-center min-h-[50vh]">
-<div class="reveal max-w-3xl mx-auto text-center relative z-10">
-<span class="label-badge" style="background:rgba(255,255,255,0.08); border-color:rgba(255,255,255,0.15); color:rgba(255,255,255,0.7);">Unser moderner Abend</span>
-<h2 class="text-4xl md:text-5xl font-medium italic mb-8 text-white">Das Problem beginnt vor dem Bett.</h2>
-<p class="text-xl text-white/60 leading-relaxed">
-    Späte Mahlzeiten, Bildschirmlicht und Stress bis kurz vor dem Einschlafen senden Aktivitätssignale an den Körper. Für ihn beginnt die Nacht dadurch oft zu spät.
-</p>
-</div>
-</section>
-
-<!-- Wave: Dark Section → Abendroutine -->
-<div class="wave-divider" aria-hidden="true">
-<svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M0,30 C360,0 1080,60 1440,20 L1440,60 L0,60 Z" fill="#f8f6f6"/>
-</svg>
-<div style="height: 2px; background: #f8f6f6; margin-top: -1px;"></div>
-</div>
-
-<!-- ABENDROUTINE -->
-<section class="shader-soft py-12 md:py-24">
-<div class="max-w-4xl mx-auto px-6 text-center">
-<div class="reveal">
-<span class="label-badge">Abendroutine</span>
-<h2 class="text-4xl md:text-5xl font-medium mb-8">Schon kleine Veränderungen können helfen.</h2>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 md:mb-16">
-<div class="card-glass rounded-xl p-8 text-center">
-<div class="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-5">
-<i data-lucide="monitor-off" class="w-7 h-7 text-primary"></i>
-</div>
-<h3 class="text-lg font-bold mb-2">Bildschirmzeit reduzieren</h3>
-<p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">Blaues Licht unterdrückt die körpereigene Melatoninproduktion und verschiebt den natürlichen Schlafrhythmus.</p>
-</div>
-<div class="card-glass rounded-xl p-8 text-center">
-<div class="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-5">
-<i data-lucide="utensils-crossed" class="w-7 h-7 text-primary"></i>
-</div>
-<h3 class="text-lg font-bold mb-2">Späte Mahlzeiten vermeiden</h3>
-<p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">Verdauungsarbeit während der Nacht kostet Erholungsenergie. Mindestens 2–3 Stunden Abstand zum Schlafen empfohlen.</p>
-</div>
-<div class="card-glass rounded-xl p-8 text-center">
-<div class="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-5">
-<i data-lucide="repeat" class="w-7 h-7 text-primary"></i>
-</div>
-<h3 class="text-lg font-bold mb-2">Konstante Abendroutine</h3>
-<p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">Der Körper lernt durch Wiederholung. Gleiche Signale, gleiche Uhrzeit – der circadiane Rhythmus dankt es.</p>
-</div>
-</div>
-<figure class="reveal my-14 text-center px-4">
-<blockquote>
-<p class="text-2xl md:text-3xl lg:text-4xl font-medium italic text-primary/90 leading-snug mb-6">
-„Konstanz ist wichtiger als Perfektion."
-</p>
-</blockquote>
-<div class="w-16 h-px bg-primary/25 mx-auto mb-4"></div>
-<figcaption class="text-xs text-slate-400 uppercase tracking-widest">Das Prinzip hinter zZzlim®</figcaption>
-</figure>
-</div>
-</div>
-</section>
-
-<!-- DIE 3 SÄULEN VON zZzlim® -->
-<section id="wirkung" class="py-16 md:py-32 shader-cool dark:bg-background-dark">
-<div class="max-w-7xl mx-auto px-6">
-<div class="reveal text-center mb-10 md:mb-20">
-<span class="label-badge">Die Formulierung</span>
-<h2 class="text-4xl md:text-5xl font-medium">Die 3 Säulen von zZzlim®</h2>
-</div>
-<div class="grid grid-cols-1 lg:grid-cols-3 gap-7 stagger-children items-start">
-
-<!-- Säule 1 -->
-<div class="reveal pillar-card" style="--index: 0">
-<div class="pillar-card-accent">
-<span class="pillar-num block">01</span>
-<h3>Unterstützung des Schlafbeginns</h3>
-</div>
-<div class="pillar-card-body">
-<ul class="space-y-3 text-slate-600 dark:text-slate-400 leading-relaxed text-left">
-<li class="flex items-start gap-3">
-<i data-lucide="check" class="w-4 h-4 text-primary mt-1 shrink-0"></i>
-<span>Melatonin trägt dazu bei, die Einschlafzeit zu verkürzen.</span>
-</li>
-<li class="flex items-start gap-3">
-<i data-lucide="check" class="w-4 h-4 text-primary mt-1 shrink-0"></i>
-<span>L-Tryptophan ist eine Vorstufe körpereigener Botenstoffe, die an der Schlaf-Wach-Regulation beteiligt sind.</span>
-</li>
-</ul>
-</div>
-</div>
-
-<!-- Säule 2 -->
-<div class="reveal pillar-card" style="--index: 1">
-<div class="pillar-card-accent">
-<span class="pillar-num block">02</span>
-<h3>Unterstützung des nächtlichen Stoffwechsels</h3>
-</div>
-<div class="pillar-card-body">
-<ul class="space-y-3 text-slate-600 dark:text-slate-400 leading-relaxed text-left">
-<li class="flex items-start gap-3">
-<i data-lucide="check" class="w-4 h-4 text-primary mt-1 shrink-0"></i>
-<span>Zink trägt zu einem normalen Kohlenhydratstoffwechsel bei.</span>
-</li>
-<li class="flex items-start gap-3">
-<i data-lucide="check" class="w-4 h-4 text-primary mt-1 shrink-0"></i>
-<span>Chrom trägt zur Aufrechterhaltung eines normalen Blutzuckerspiegels bei.</span>
-</li>
-<li class="flex items-start gap-3">
-<i data-lucide="check" class="w-4 h-4 text-primary mt-1 shrink-0"></i>
-<span>B-Vitamine tragen zu einem normalen Energiestoffwechsel bei.</span>
-</li>
-</ul>
-</div>
-</div>
-
-<!-- Säule 3 -->
-<div class="reveal pillar-card" style="--index: 2">
-<div class="pillar-card-accent">
-<span class="pillar-num block">03</span>
-<h3>Unterstützung der täglichen Vitalität</h3>
-</div>
-<div class="pillar-card-body">
-<ul class="space-y-3 text-slate-600 dark:text-slate-400 leading-relaxed text-left">
-<li class="flex items-start gap-3">
-<i data-lucide="check" class="w-4 h-4 text-primary mt-1 shrink-0"></i>
-<span>Niacin trägt zu einer normalen psychischen Funktion bei.</span>
-</li>
-<li class="flex items-start gap-3">
-<i data-lucide="check" class="w-4 h-4 text-primary mt-1 shrink-0"></i>
-<span>Vitamin B6 trägt zu einer normalen Funktion des Nervensystems bei.</span>
-</li>
-<li class="flex items-start gap-3">
-<i data-lucide="check" class="w-4 h-4 text-primary mt-1 shrink-0"></i>
-<span>Biotin trägt zu einem normalen Energiestoffwechsel bei.</span>
-</li>
-</ul>
-</div>
-</div>
-
-</div>
-<p class="reveal text-center text-xl italic text-slate-600 dark:text-slate-400 mt-12">zZzlim® ist ein System – kein einzelner Wirkstoff.</p>
-</div>
-</section>
-
-<!-- PRODUKT CTA -->
-<section class="relative py-16 md:py-28 lg:py-36 overflow-hidden shader-glow">
-<!-- Decorative radial glow behind product -->
-<div class="absolute left-[5%] md:left-[12%] top-1/2 -translate-y-1/2 w-[400px] h-[400px] md:w-[550px] md:h-[550px] rounded-full pointer-events-none" style="background: radial-gradient(circle, rgba(134,19,48,0.13) 0%, rgba(134,19,48,0.06) 35%, transparent 65%);" aria-hidden="true"></div>
-
-<div class="reveal max-w-6xl mx-auto px-6 relative z-10">
-<!-- Mobile-only heading: appears before image -->
-<h2 class="md:hidden text-3xl sm:text-4xl font-medium leading-tight mb-8 text-center">
-Unterstützung für<br/>
-<span class="italic text-primary">deine Abendroutine.</span>
-</h2>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-center">
-
-<!-- Left: Product Image -->
-<div class="flex justify-center md:justify-end">
-<div class="relative">
-<img src="ProductPicZZLIM.png" alt="zZzlim® Monatskur – Nahrungsergänzungsmittel" class="w-[352px] md:w-[462px] lg:w-[572px] drop-shadow-2xl relative z-10" loading="lazy" />
-<div class="absolute -bottom-8 left-1/2 -translate-x-1/2 w-[70%] h-12 bg-black/[0.06] rounded-full blur-2xl"></div>
-<!-- Subtle ring decoration -->
-<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[110%] h-[110%] rounded-full border border-primary/[0.06]" aria-hidden="true"></div>
-<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[130%] h-[130%] rounded-full border border-primary/[0.03]" aria-hidden="true"></div>
-</div>
-</div>
-
-<!-- Right: Content -->
-<div class="text-center md:text-left">
-<h2 class="hidden md:block text-4xl md:text-5xl font-medium leading-tight mb-6">
-Unterstützung für<br/>
-<span class="italic text-primary">deine Abendroutine.</span>
-</h2>
-<p class="text-lg text-slate-500 leading-relaxed mb-8">
-Hochwertige Inhaltsstoffe, intelligent kombiniert. Entwickelt von Experten für eine neue Kultur des Schlafens. 100% Vegan.
-</p>
-<div class="space-y-3 mb-10">
-<div class="flex items-center gap-3 justify-center md:justify-start">
-<i data-lucide="circle-check" class="w-5 h-5 text-primary"></i>
-<span class="font-bold text-slate-800">Melatonin & L-Tryptophan</span>
-</div>
-<div class="flex items-center gap-3 justify-center md:justify-start">
-<i data-lucide="circle-check" class="w-5 h-5 text-primary"></i>
-<span class="font-bold text-slate-800">Komplex aus B-Vitaminen</span>
-</div>
-<div class="flex items-center gap-3 justify-center md:justify-start">
-<i data-lucide="circle-check" class="w-5 h-5 text-primary"></i>
-<span class="font-bold text-slate-800">Safran-Extrakt</span>
-</div>
-<div class="flex items-center gap-3 justify-center md:justify-start">
-<i data-lucide="circle-check" class="w-5 h-5 text-primary"></i>
-<span class="font-bold text-slate-800">Nopal-Kaktus Pulver</span>
-</div>
-</div>
-<div class="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-4">
-<a href="https://zzzlim.de/products/zzzlim%C2%AE-monatskur-30-kapseln" class="cta-glow inline-block bg-primary text-white px-10 py-4 rounded-lg font-bold text-sm uppercase tracking-wider hover:bg-primary/90 cursor-pointer">
-In Ruhe ausprobieren
-</a>
-</div>
-<p class="text-xs text-slate-400 mt-4 mb-8">*Nur solange der Vorrat reicht. Versandkostenfrei ab 50€.</p>
-
-<!-- Qualitätsmerkmale -->
-<div class="bg-white/50 backdrop-blur-sm border border-primary/8 rounded-xl px-6 py-6">
-<div class="grid grid-cols-3 gap-4 mb-5">
-<div class="flex flex-col items-center gap-2 text-center">
-<div class="rounded-full bg-primary flex items-center justify-center" style="width:44px;height:44px;flex-shrink:0;">
-<i data-lucide="leaf" class="w-5 h-5 text-white"></i>
-</div>
-<span class="text-[11px] sm:text-[10px] font-medium text-slate-500 leading-tight">Vegan</span>
-</div>
-<div class="flex flex-col items-center gap-2 text-center">
-<div class="rounded-full bg-primary flex items-center justify-center" style="width:44px;height:44px;flex-shrink:0;">
-<i data-lucide="dna" class="w-5 h-5 text-white"></i>
-</div>
-<span class="text-[11px] sm:text-[10px] font-medium text-slate-500 leading-tight">Ohne Gentechnik</span>
-</div>
-<div class="flex flex-col items-center gap-2 text-center">
-<div class="rounded-full bg-primary flex items-center justify-center" style="width:44px;height:44px;flex-shrink:0;">
-<i data-lucide="wheat-off" class="w-5 h-5 text-white"></i>
-</div>
-<span class="text-[11px] sm:text-[10px] font-medium text-slate-500 leading-tight">Glutenfrei</span>
-</div>
-<div class="flex flex-col items-center gap-2 text-center">
-<div class="rounded-full bg-primary flex items-center justify-center" style="width:44px;height:44px;flex-shrink:0;">
-<i data-lucide="rabbit" class="w-5 h-5 text-white"></i>
-</div>
-<span class="text-[11px] sm:text-[10px] font-medium text-slate-500 leading-tight">Tierversuchsfrei</span>
-</div>
-<div class="flex flex-col items-center gap-2 text-center">
-<div class="rounded-full bg-primary flex items-center justify-center" style="width:44px;height:44px;flex-shrink:0;">
-<i data-lucide="candy-off" class="w-5 h-5 text-white"></i>
-</div>
-<span class="text-[11px] sm:text-[10px] font-medium text-slate-500 leading-tight">Ohne Zuckerzusatz</span>
-</div>
-<div class="flex flex-col items-center gap-2 text-center">
-<div class="rounded-full bg-primary flex items-center justify-center" style="width:44px;height:44px;flex-shrink:0;">
-<i data-lucide="flask-conical-off" class="w-5 h-5 text-white"></i>
-</div>
-<span class="text-[11px] sm:text-[10px] font-medium text-slate-500 leading-tight">Ohne künstliche Aromen</span>
-</div>
-</div>
-<div class="flex flex-wrap items-center justify-center md:justify-start gap-2 pt-4 border-t border-primary/10">
-<span class="text-xs font-bold text-slate-600">Jede Charge unabhängig geprüft durch:</span>
-<img src="68bf2fd664663f05dc5b4154_large-White_Merieux_Logo.webp" alt="Mérieux NutriSciences" class="h-12 w-auto" style="filter: invert(1);" />
-</div>
-</div>
-
-</div>
-
-</div>
-</div>
-</section>
-
-<!-- SOCIAL PROOF -->
-<section class="py-12 md:py-24 shader-warm">
-<div class="reveal text-center mb-6 md:mb-12 px-6">
-<span class="label-badge">Erfahrungen</span>
-<h2 class="text-4xl md:text-5xl font-medium">Das sagen Nutzer über zZzlim®</h2>
-</div>
-<div class="max-w-6xl mx-auto px-6">
-    <div class="t-outer" id="t-outer">
-        <div class="t-track" id="t-track"></div>
+        </div>
     </div>
-    <div class="flex items-center justify-center gap-3 mt-8">
-        <button id="t-prev" class="t-nav-btn" aria-label="Vorheriges Testimonial">
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
-        </button>
-        <button id="t-next" class="t-nav-btn" aria-label="Nächstes Testimonial">
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
-        </button>
-    </div>
-</div>
-</section>
 
-<!-- FAQ -->
-<section id="faq" class="py-12 md:py-24 lg:py-32 shader-warm">
-<div class="max-w-5xl mx-auto px-6">
-<div class="reveal grid gap-10 md:grid-cols-5 md:gap-14">
+    <!-- HERO -->
+    <section id="main-content" class="relative bg-[#F8F6F4] flex flex-col items-center justify-center text-center overflow-hidden py-20 md:py-32 lg:py-40 min-h-[90vh]">
+        <div class="hero-stagger max-w-5xl mx-auto px-6 relative z-10">
+            <h1 class="text-[2.5rem] sm:text-5xl md:text-7xl lg:text-[5.5rem] font-medium font-display leading-[0.95] tracking-tight mb-2 whitespace-nowrap">
+                Schlaf ist keine Pause.</h1>
+            <p class="text-[2.5rem] sm:text-5xl md:text-7xl lg:text-[5.5rem] font-medium font-display leading-[0.95] tracking-tight mb-10 whitespace-nowrap">
+                <span class="text-primary italic">Schlaf ist <span id="hero-word-wrap"><span id="hero-word"></span></span></span></p>
+            <p class="text-lg md:text-xl text-slate-500 font-display leading-relaxed max-w-2xl mx-auto mb-10">
+                Wenn du nachts hellwach bist oder morgens gerädert aufwachst, liegt das oft nicht an dir – sondern an deinem Nervensystem und deiner Abendroutine.
+            </p>
+            <a href="https://zzzlim.de/products/zzzlim%C2%AE-monatskur-30-kapseln"
+                class="cta-glow bg-primary text-white px-10 py-4 rounded-xl font-bold text-base hover:bg-primary/90 cursor-pointer inline-block">
+                In Ruhe ausprobieren
+            </a>
+        </div>
+        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
+            <span class="text-xs font-bold uppercase tracking-wider text-primary font-display">Warum das passiert</span>
+            <i data-lucide="chevron-down" class="w-5 h-5 text-primary"></i>
+        </div>
+    </section>
 
-<!-- Left: Heading -->
-<div class="md:col-span-2">
-<h2 class="text-4xl font-medium italic">Häufige Fragen</h2>
-<p class="text-slate-500 mt-4 text-lg leading-relaxed">Antworten auf die wichtigsten Fragen rund um zZzlim®.</p>
-<p class="text-slate-400 mt-6 hidden md:block text-sm">
-    Noch Fragen? Schreib uns an
-    <a href="mailto:info@zzzlim.de" class="text-primary font-medium hover:underline">info@zzzlim.de</a>
-</p>
-</div>
+    <!-- PROBLEM IDENTIFICATION -->
+    <section id="ursachen" class="py-20 md:py-32 relative overflow-hidden">
+        <!-- Decorative cycle rings -->
+        <div class="absolute right-0 bottom-0 translate-x-1/3 translate-y-1/3 pointer-events-none select-none"
+            aria-hidden="true">
+            <svg width="340" height="340" viewBox="0 0 320 320" fill="none" xmlns="http://www.w3.org/2000/svg"
+                style="opacity:0.08;">
+                <circle cx="160" cy="160" r="145" stroke="#861330" stroke-width="1.5" stroke-dasharray="14 7"
+                    class="cycle-ring-1" />
+                <circle cx="160" cy="160" r="104" stroke="#861330" stroke-width="2" stroke-dasharray="9 9"
+                    class="cycle-ring-2" />
+                <circle cx="160" cy="160" r="62" stroke="#861330" stroke-width="1.5" stroke-dasharray="6 6"
+                    class="cycle-ring-3" />
+                <!-- Arrow tip on outer ring -->
+                <path d="M160 15 L166 27 L154 27 Z" fill="#861330" class="cycle-ring-1" />
+            </svg>
+        </div>
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="reveal max-w-2xl mx-auto text-center mb-8 md:mb-16">
+                <span class="label-badge">Das Problem</span>
+                <h2 class="text-4xl md:text-5xl font-medium mt-4 mb-6">Viele kennen diese Nächte</h2>
+                <p class="text-lg text-slate-600 dark:text-slate-400 leading-relaxed">
+                    Du bist müde, freust dich aufs Bett – und liegst trotzdem wach. Oder du schläfst ein und wachst
+                    mitten in der Nacht wieder auf.
+                </p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 items-stretch">
+                <div class="reveal card-glass p-8 rounded-xl text-center cursor-default flex flex-col items-center"
+                    style="--index: 0">
+                    <i data-lucide="brain" class="w-8 h-8 text-primary mb-6 shrink-0"></i>
+                    <h3 class="text-xl font-bold mb-3">Todmüde – aber Kopf hellwach</h3>
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed">Der Körper will schlafen, aber das
+                        Nervensystem kommt nicht zur Ruhe.</p>
+                </div>
+                <div class="reveal card-glass p-8 rounded-xl text-center cursor-default flex flex-col items-center"
+                    style="--index: 1">
+                    <i data-lucide="alarm-clock" class="w-8 h-8 text-primary mb-6 shrink-0"></i>
+                    <h3 class="text-xl font-bold mb-3">Nachts zwischen 2–4 Uhr wach</h3>
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed">Das klassische Durchschlafproblem –
+                        jede Nacht derselbe Rhythmus.</p>
+                </div>
+                <div class="reveal card-glass p-8 rounded-xl text-center cursor-default flex flex-col items-center"
+                    style="--index: 2">
+                    <i data-lucide="infinity" class="w-8 h-8 text-primary mb-6 shrink-0"></i>
+                    <h3 class="text-xl font-bold mb-3">Gedankenkarussell im Bett</h3>
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed">To-Do-Listen, Sorgen, Grübeleien – der
+                        Geist will einfach nicht abschalten.</p>
+                </div>
+                <div class="reveal card-glass p-8 rounded-xl text-center cursor-default flex flex-col items-center"
+                    style="--index: 3">
+                    <i data-lucide="battery-low" class="w-8 h-8 text-primary mb-6 shrink-0"></i>
+                    <h3 class="text-xl font-bold mb-3">Morgens gerädert aufwachen</h3>
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed">Der Wecker klingelt und du fühlst dich
+                        schwerer als am Vorabend.</p>
+                </div>
+            </div>
+            <p class="reveal text-center text-xl italic text-slate-600 dark:text-slate-400 mt-8 md:mt-16">Du bist damit
+                nicht allein.</p>
+        </div>
+    </section>
 
-<!-- Right: Accordion -->
-<div class="md:col-span-3 space-y-0">
-<details class="group border-b border-primary/10 cursor-pointer">
-<summary class="flex justify-between items-center font-bold text-lg py-5 list-none select-none">
-    Ist zZzlim® ein Medikament?
-    <i data-lucide="chevron-down" class="w-5 h-5 text-primary transition-transform duration-200 group-open:rotate-180"></i>
-</summary>
-<p class="pb-5 text-slate-600 dark:text-slate-400 leading-relaxed">
-    Nein, es handelt sich um ein Nahrungsergänzungsmittel. Es ersetzt keine ärztliche Behandlung oder Diagnose.
-</p>
-</details>
-<details class="group border-b border-primary/10 cursor-pointer">
-<summary class="flex justify-between items-center font-bold text-lg py-5 list-none select-none">
-    Macht zZzlim® abhängig?
-    <i data-lucide="chevron-down" class="w-5 h-5 text-primary transition-transform duration-200 group-open:rotate-180"></i>
-</summary>
-<p class="pb-5 text-slate-600 dark:text-slate-400 leading-relaxed">
-    Nein, es enthält keine Stoffe mit Abhängigkeitspotenzial. Du kannst die Einnahme jederzeit beenden.
-</p>
-</details>
-<details class="group border-b border-primary/10 cursor-pointer">
-<summary class="flex justify-between items-center font-bold text-lg py-5 list-none select-none">
-    Wann und wie einnehmen?
-    <i data-lucide="chevron-down" class="w-5 h-5 text-primary transition-transform duration-200 group-open:rotate-180"></i>
-</summary>
-<p class="pb-5 text-slate-600 dark:text-slate-400 leading-relaxed">
-    Täglich eine Kapsel abends vor dem Schlafengehen mit ausreichend Wasser einnehmen.
-</p>
-</details>
-<details class="group border-b border-primary/10 cursor-pointer">
-<summary class="flex justify-between items-center font-bold text-lg py-5 list-none select-none">
-    Wann merkt man etwas?
-    <i data-lucide="chevron-down" class="w-5 h-5 text-primary transition-transform duration-200 group-open:rotate-180"></i>
-</summary>
-<p class="pb-5 text-slate-600 dark:text-slate-400 leading-relaxed">
-    Erfahrungen können individuell unterschiedlich sein. Viele Nutzer berichten bereits nach wenigen Tagen von einem veränderten Schlafempfinden.
-</p>
-</details>
-<details class="group border-b border-primary/10 cursor-pointer">
-<summary class="flex justify-between items-center font-bold text-lg py-5 list-none select-none">
-    Wird international versendet?
-    <i data-lucide="chevron-down" class="w-5 h-5 text-primary transition-transform duration-200 group-open:rotate-180"></i>
-</summary>
-<p class="pb-5 text-slate-600 dark:text-slate-400 leading-relaxed">
-    Der Versand innerhalb Deutschlands ist aktuell vollständig kostenfrei.<br/><br/>In EU-Länder versenden wir ebenfalls – die Versandkosten richten sich je nach Zielland und werden im Checkout transparent angezeigt.
-</p>
-</details>
-</div>
+    <!-- WAS IM SCHLAF PASSIERT -->
+    <section class="tl-section py-16 md:py-32 overflow-hidden" id="timeline-section">
+        <div class="max-w-5xl mx-auto px-6 relative">
+            <div class="reveal text-center mb-12 md:mb-28">
+                <span class="label-badge">Was im Schlaf passiert</span>
+                <h2 class="text-4xl md:text-5xl font-medium mb-6">Schlaf ist keine passive Pause.</h2>
+                <p class="text-slate-600 dark:text-slate-400 text-lg max-w-3xl mx-auto leading-relaxed">
+                    Während der Nacht laufen im Körper zahlreiche Prozesse ab, die für Regeneration und Erholung
+                    entscheidend sind.
+                </p>
+            </div>
 
-<!-- Mobile contact hint -->
-<p class="text-slate-400 mt-4 md:hidden text-sm">
-    Noch Fragen? Schreib uns an
-    <a href="mailto:info@zzzlim.de" class="text-primary font-medium hover:underline">info@zzzlim.de</a>
-</p>
+            <!-- Desktop Timeline -->
+            <div class="tl-desktop relative" id="tl-desktop">
+                <div class="tl-line-track"></div>
+                <div class="tl-line-fill" id="tl-line-fill"></div>
 
-</div>
-</div>
-</section>
+                <!-- Event 1: Left – Nervensystem -->
+                <div class="relative flex items-center mb-14 w-full" data-tl-event>
+                    <div class="tl-event from-left w-[45%] text-right pr-24">
+                        <h4 class="text-2xl font-bold mb-2">Nervensystem</h4>
+                        <p class="text-slate-600 dark:text-slate-400 text-lg italic leading-relaxed">Das Nervensystem
+                            fährt Schritt für Schritt herunter und wechselt vom Aktivitäts- in den Ruhemodus.</p>
+                    </div>
+                    <div class="absolute left-1/2 -translate-x-1/2 flex items-center justify-center" aria-hidden="true">
+                        <div class="tl-dot" data-tl-dot><span class="tl-dot-num">1</span></div>
+                    </div>
+                </div>
 
-<!-- Footer -->
-<footer class="pt-16 md:pt-24">
-<div class="max-w-3xl mx-auto px-6 text-center">
+                <!-- Event 2: Right – Mentale Erholung -->
+                <div class="relative flex items-center mb-14 w-full" data-tl-event>
+                    <div class="w-[55%]"></div>
+                    <div class="absolute left-1/2 -translate-x-1/2 flex items-center justify-center" aria-hidden="true">
+                        <div class="tl-dot" data-tl-dot><span class="tl-dot-num">2</span></div>
+                    </div>
+                    <div class="tl-event from-right w-[45%] pl-24">
+                        <h4 class="text-2xl font-bold mb-2">Mentale Erholung</h4>
+                        <p class="text-slate-600 dark:text-slate-400 text-lg italic leading-relaxed">Das Gehirn
+                            verarbeitet Eindrücke des Tages und unterstützt die mentale Erholung.</p>
+                    </div>
+                </div>
 
-<!-- Logo -->
-<a href="#"><img src="LOGOREAL.svg" alt="zZzlim®" class="h-9 md:h-10 w-auto mx-auto" style="filter: invert(1);" /></a>
+                <!-- Event 3: Left – Hormonelle Prozesse -->
+                <div class="relative flex items-center mb-14 w-full" data-tl-event>
+                    <div class="tl-event from-left w-[45%] text-right pr-24">
+                        <h4 class="text-2xl font-bold mb-2">Hormonelle Prozesse</h4>
+                        <p class="text-slate-600 dark:text-slate-400 text-lg italic leading-relaxed">Hormonelle Prozesse
+                            folgen einem natürlichen Rhythmus. Der Körper stellt wichtige Signale um, die eng mit
+                            Regeneration und Energiehaushalt verbunden sind.</p>
+                    </div>
+                    <div class="absolute left-1/2 -translate-x-1/2 flex items-center justify-center" aria-hidden="true">
+                        <div class="tl-dot" data-tl-dot><span class="tl-dot-num">3</span></div>
+                    </div>
+                </div>
 
-<!-- Social Icons -->
-<div class="flex items-center justify-center gap-5 mt-6">
-<a href="https://www.instagram.com/zzzlim.de/" target="_blank" rel="noopener" class="group" aria-label="Instagram">
-    <svg class="w-6 h-6 text-primary hover:text-primary/70 transition-colors" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-</a>
-<a href="https://www.tiktok.com/@zzzlim.de" target="_blank" rel="noopener" class="group" aria-label="TikTok">
-    <svg class="w-6 h-6 text-primary hover:text-primary/70 transition-colors" fill="currentColor" viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
-</a>
-<a href="https://www.facebook.com/people/Zzzlim/61573836653477/" target="_blank" rel="noopener" class="group" aria-label="Facebook">
-    <svg class="w-6 h-6 text-primary hover:text-primary/70 transition-colors" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-</a>
-<a href="https://www.youtube.com/@zZzlim-de" target="_blank" rel="noopener" class="group" aria-label="YouTube">
-    <svg class="w-6 h-6 text-primary hover:text-primary/70 transition-colors" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-</a>
-</div>
+                <!-- Event 4: Right – Abendsignale -->
+                <div class="relative flex items-center w-full" data-tl-event>
+                    <div class="w-[55%]"></div>
+                    <div class="absolute left-1/2 -translate-x-1/2 flex items-center justify-center" aria-hidden="true">
+                        <div class="tl-dot" data-tl-dot><span class="tl-dot-num">4</span></div>
+                    </div>
+                    <div class="tl-event from-right w-[45%] pl-24">
+                        <h4 class="text-2xl font-bold mb-2">Vorbereitung am Abend</h4>
+                        <p class="text-slate-600 dark:text-slate-400 text-lg italic leading-relaxed">Viele dieser
+                            Abläufe beginnen nicht erst im Bett. Sie starten bereits Stunden davor – mit den Signalen,
+                            die wir unserem Körper am Abend senden.</p>
+                    </div>
+                </div>
+            </div>
 
-<!-- Legal + Copyright -->
-<div class="mt-10 pt-6 border-t border-primary/5">
-<div class="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-xs text-slate-400">
-    <a href="https://zzzlim.de/policies/legal-notice" target="_blank" rel="noopener" class="hover:text-slate-700 transition-colors">Impressum</a>
-    <span class="text-slate-300">&bull;</span>
-    <a href="https://zzzlim.de/policies/privacy-policy" target="_blank" rel="noopener" class="hover:text-slate-700 transition-colors">Datenschutz</a>
-    <span class="text-slate-300">&bull;</span>
-    <a href="https://zzzlim.de/policies/terms-of-service" target="_blank" rel="noopener" class="hover:text-slate-700 transition-colors">AGB</a>
-</div>
-<p class="text-xs text-slate-400 mt-4">&copy; 2025 zZzlim® International. Alle Rechte vorbehalten.</p>
-<p class="text-[10px] text-slate-300 mt-1 pb-8">Nahrungsergänzungsmittel. Kein Ersatz für eine ausgewogene Ernährung.</p>
-</div>
+            <!-- Mobile Timeline -->
+            <div class="tl-mobile relative" id="tl-mobile">
+                <div class="tl-mobile-line-track"></div>
+                <div class="tl-mobile-line-fill" id="tl-mobile-line-fill"></div>
 
-</div>
-</footer>
+                <div class="relative pl-10 mb-8" data-tl-mobile-event>
+                    <div class="tl-mobile-dot" data-tl-mobile-dot><span class="tl-mobile-dot-num">1</span></div>
+                    <div class="tl-mobile-event">
+                        <h4 class="text-lg font-bold mb-1">Nervensystem</h4>
+                        <p class="text-slate-600 dark:text-slate-400 italic text-sm leading-relaxed">Das Nervensystem
+                            fährt Schritt für Schritt herunter und wechselt vom Aktivitäts- in den Ruhemodus.</p>
+                    </div>
+                </div>
+                <div class="relative pl-10 mb-8" data-tl-mobile-event>
+                    <div class="tl-mobile-dot" data-tl-mobile-dot><span class="tl-mobile-dot-num">2</span></div>
+                    <div class="tl-mobile-event">
+                        <h4 class="text-lg font-bold mb-1">Mentale Erholung</h4>
+                        <p class="text-slate-600 dark:text-slate-400 italic text-sm leading-relaxed">Das Gehirn
+                            verarbeitet Eindrücke des Tages und unterstützt die mentale Erholung.</p>
+                    </div>
+                </div>
+                <div class="relative pl-10 mb-8" data-tl-mobile-event>
+                    <div class="tl-mobile-dot" data-tl-mobile-dot><span class="tl-mobile-dot-num">3</span></div>
+                    <div class="tl-mobile-event">
+                        <h4 class="text-lg font-bold mb-1">Hormonelle Prozesse</h4>
+                        <p class="text-slate-600 dark:text-slate-400 italic text-sm leading-relaxed">Der Körper stellt
+                            wichtige Signale um, die eng mit Regeneration und Energiehaushalt verbunden sind.</p>
+                    </div>
+                </div>
+                <div class="relative pl-10" data-tl-mobile-event>
+                    <div class="tl-mobile-dot" data-tl-mobile-dot><span class="tl-mobile-dot-num">4</span></div>
+                    <div class="tl-mobile-event">
+                        <h4 class="text-lg font-bold mb-1">Vorbereitung am Abend</h4>
+                        <p class="text-slate-600 dark:text-slate-400 italic text-sm leading-relaxed">Viele dieser
+                            Abläufe beginnen nicht erst im Bett – sondern Stunden davor.</p>
+                    </div>
+                </div>
+            </div>
 
-<!-- Back to Top -->
-<button id="back-to-top" class="back-to-top fixed bottom-6 right-6 z-40 w-12 h-12 rounded-full bg-primary text-white shadow-lg flex items-center justify-center cursor-pointer hover:bg-primary/90" aria-label="Nach oben scrollen">
-<i data-lucide="arrow-up" class="w-5 h-5"></i>
-</button>
+        </div>
 
-<!-- JavaScript -->
-<script>
-// Init Lucide icons
-lucide.createIcons();
+    </section>
 
-// Hero typewriter
-(function() {
-    const word = 'Reparatur.';
-    const el = document.getElementById('hero-word');
-    if (!el) return;
-    let i = 0;
-    function type() {
-        if (i <= word.length) {
-            el.textContent = word.slice(0, i);
-            i++;
-            setTimeout(type, 120);
-        } else {
-            setTimeout(() => el.classList.add('done'), 600);
-        }
-    }
-    setTimeout(type, 800);
-})();
+    <!-- UNSER MODERNER ABEND -->
+    <section class="relative py-20 md:py-32 px-6 overflow-hidden bg-[#F8F6F4] flex items-center justify-center">
+        <div class="reveal max-w-3xl mx-auto text-center relative z-10">
+            <span class="label-badge">Unser moderner Abend</span>
+            <h2 class="text-4xl md:text-5xl font-medium italic mb-8">Das Problem beginnt vor dem Bett.</h2>
+            <p class="text-xl text-slate-600 leading-relaxed">
+                Späte Mahlzeiten, Bildschirmlicht und Stress bis kurz vor dem Einschlafen senden Aktivitätssignale an
+                den Körper. Für ihn beginnt die Nacht dadurch oft zu spät.
+            </p>
+        </div>
+    </section>
 
-// Scroll Reveal
-const revealElements = document.querySelectorAll('.reveal');
-const revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            revealObserver.unobserve(entry.target);
-        }
-    });
-}, { rootMargin: '-100px 0px', threshold: 0.01 });
-revealElements.forEach(el => revealObserver.observe(el));
+    <!-- ABENDROUTINE -->
+    <section class="py-20 md:py-32">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <div class="reveal">
+                <span class="label-badge">Abendroutine</span>
+                <h2 class="text-4xl md:text-5xl font-medium mb-8">Schon kleine Veränderungen können helfen.</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 md:mb-16">
+                    <div class="card-glass rounded-xl p-8 text-center">
+                        <div class="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-5">
+                            <i data-lucide="monitor-off" class="w-7 h-7 text-primary"></i>
+                        </div>
+                        <h3 class="text-lg font-bold mb-2">Bildschirmzeit reduzieren</h3>
+                        <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">Blaues Licht unterdrückt
+                            die körpereigene Melatoninproduktion und verschiebt den natürlichen Schlafrhythmus.</p>
+                    </div>
+                    <div class="card-glass rounded-xl p-8 text-center">
+                        <div class="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-5">
+                            <i data-lucide="utensils-crossed" class="w-7 h-7 text-primary"></i>
+                        </div>
+                        <h3 class="text-lg font-bold mb-2">Späte Mahlzeiten vermeiden</h3>
+                        <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">Verdauungsarbeit während
+                            der Nacht kostet Erholungsenergie. Mindestens 2–3 Stunden Abstand zum Schlafen empfohlen.
+                        </p>
+                    </div>
+                    <div class="card-glass rounded-xl p-8 text-center">
+                        <div class="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-5">
+                            <i data-lucide="repeat" class="w-7 h-7 text-primary"></i>
+                        </div>
+                        <h3 class="text-lg font-bold mb-2">Konstante Abendroutine</h3>
+                        <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">Der Körper lernt durch
+                            Wiederholung. Gleiche Signale, gleiche Uhrzeit – der circadiane Rhythmus dankt es.</p>
+                    </div>
+                </div>
+                <figure class="reveal my-14 text-center px-4">
+                    <blockquote>
+                        <p
+                            class="text-2xl md:text-3xl lg:text-4xl font-medium italic text-primary/90 leading-snug mb-6">
+                            „Konstanz ist wichtiger als Perfektion."
+                        </p>
+                    </blockquote>
+                    <div class="w-16 h-px bg-primary/25 mx-auto mb-4"></div>
+                    <figcaption class="text-xs text-slate-400 uppercase tracking-widest">Das Prinzip hinter zZzlim®
+                    </figcaption>
+                </figure>
+            </div>
+        </div>
+    </section>
 
-// Left Scroll Dots
-(function() {
-    const dotsContainer = document.getElementById('scroll-dots');
-    if (!dotsContainer) return;
-    const dots = dotsContainer.querySelectorAll('.scroll-dot');
-    const total = dots.length;
-    function updateDots() {
-        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-        const pct = docHeight > 0 ? Math.min(1, window.scrollY / docHeight) : 0;
-        const active = Math.round(pct * total);
-        dots.forEach((d, i) => d.classList.toggle('active', i < active));
-    }
-    window.addEventListener('scroll', updateDots, { passive: true });
-    updateDots();
-})();
+    <!-- DIE 3 SÄULEN VON zZzlim® -->
+    <section id="wirkung" class="py-16 md:py-32 shader-cool dark:bg-background-dark">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="reveal text-center mb-10 md:mb-20">
+                <span class="label-badge">Die Formulierung</span>
+                <h2 class="text-4xl md:text-5xl font-medium">Die 3 Säulen von zZzlim®</h2>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-7 stagger-children items-start">
 
-// Scroll Indicator Fade
-const scrollIndicator = document.getElementById('scroll-indicator');
-window.addEventListener('scroll', () => {
-    if (scrollIndicator) {
-        scrollIndicator.style.opacity = window.scrollY > 100 ? '0' : '1';
-        scrollIndicator.style.transition = 'opacity 0.3s ease-out';
-    }
-}, { passive: true });
+                <!-- Säule 1 -->
+                <div class="reveal pillar-card" style="--index: 0">
+                    <div class="pillar-card-accent">
+                        <span class="pillar-num block">01</span>
+                        <h3>Unterstützung des Schlafbeginns</h3>
+                    </div>
+                    <div class="pillar-card-body">
+                        <ul class="space-y-3 text-slate-600 dark:text-slate-400 leading-relaxed text-left">
+                            <li class="flex items-start gap-3">
+                                <i data-lucide="check" class="w-4 h-4 text-primary mt-1 shrink-0"></i>
+                                <span>Melatonin trägt dazu bei, die Einschlafzeit zu verkürzen.</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i data-lucide="check" class="w-4 h-4 text-primary mt-1 shrink-0"></i>
+                                <span>L-Tryptophan ist eine Vorstufe körpereigener Botenstoffe, die an der
+                                    Schlaf-Wach-Regulation beteiligt sind.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
 
-// Back to Top
-const backToTop = document.getElementById('back-to-top');
-window.addEventListener('scroll', () => {
-    if (backToTop) backToTop.classList.toggle('visible', window.scrollY > 500);
-}, { passive: true });
-backToTop?.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+                <!-- Säule 2 -->
+                <div class="reveal pillar-card" style="--index: 1">
+                    <div class="pillar-card-accent">
+                        <span class="pillar-num block">02</span>
+                        <h3>Unterstützung des nächtlichen Stoffwechsels</h3>
+                    </div>
+                    <div class="pillar-card-body">
+                        <ul class="space-y-3 text-slate-600 dark:text-slate-400 leading-relaxed text-left">
+                            <li class="flex items-start gap-3">
+                                <i data-lucide="check" class="w-4 h-4 text-primary mt-1 shrink-0"></i>
+                                <span>Zink trägt zu einem normalen Kohlenhydratstoffwechsel bei.</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i data-lucide="check" class="w-4 h-4 text-primary mt-1 shrink-0"></i>
+                                <span>Chrom trägt zur Aufrechterhaltung eines normalen Blutzuckerspiegels bei.</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i data-lucide="check" class="w-4 h-4 text-primary mt-1 shrink-0"></i>
+                                <span>B-Vitamine tragen zu einem normalen Energiestoffwechsel bei.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
 
-// Mobile Menu (fullscreen overlay)
-const menuToggle = document.getElementById('menu-toggle');
-const mobileMenu = document.getElementById('mobile-menu');
-const mobileMenuPanel = document.getElementById('mobile-menu-panel');
-const menuClose = document.getElementById('menu-close');
-const menuNavLinks = mobileMenu ? mobileMenu.querySelectorAll('.menu-nav-link') : [];
-const menuCtaLink = mobileMenu ? mobileMenu.querySelector('.menu-cta-link') : null;
+                <!-- Säule 3 -->
+                <div class="reveal pillar-card" style="--index: 2">
+                    <div class="pillar-card-accent">
+                        <span class="pillar-num block">03</span>
+                        <h3>Unterstützung der täglichen Vitalität</h3>
+                    </div>
+                    <div class="pillar-card-body">
+                        <ul class="space-y-3 text-slate-600 dark:text-slate-400 leading-relaxed text-left">
+                            <li class="flex items-start gap-3">
+                                <i data-lucide="check" class="w-4 h-4 text-primary mt-1 shrink-0"></i>
+                                <span>Niacin trägt zu einer normalen psychischen Funktion bei.</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i data-lucide="check" class="w-4 h-4 text-primary mt-1 shrink-0"></i>
+                                <span>Vitamin B6 trägt zu einer normalen Funktion des Nervensystems bei.</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i data-lucide="check" class="w-4 h-4 text-primary mt-1 shrink-0"></i>
+                                <span>Biotin trägt zu einem normalen Energiestoffwechsel bei.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
 
-function openMenu() {
-    mobileMenu.classList.remove('pointer-events-none');
-    mobileMenu.setAttribute('aria-hidden', 'false');
-    menuToggle.setAttribute('aria-expanded', 'true');
-    menuToggle.classList.add('is-open');
-    mobileMenuPanel.classList.add('menu-open');
-    document.body.style.overflow = 'hidden';
-    setTimeout(() => {
-        menuNavLinks.forEach(l => l.classList.add('visible'));
-        if (menuCtaLink) menuCtaLink.classList.add('visible');
-    }, 60);
-}
-function closeMenu() {
-    menuToggle.setAttribute('aria-expanded', 'false');
-    menuToggle.classList.remove('is-open');
-    menuNavLinks.forEach(l => l.classList.remove('visible'));
-    if (menuCtaLink) menuCtaLink.classList.remove('visible');
-    mobileMenuPanel.classList.remove('menu-open');
-    setTimeout(() => {
-        mobileMenu.classList.add('pointer-events-none');
-        mobileMenu.setAttribute('aria-hidden', 'true');
-        document.body.style.overflow = '';
-    }, 560);
-}
-menuToggle?.addEventListener('click', openMenu);
-menuClose?.addEventListener('click', closeMenu);
-mobileMenu?.querySelectorAll('.menu-nav-link, .menu-cta-link').forEach(link => link.addEventListener('click', closeMenu));
+            </div>
+            <p class="reveal text-center text-xl italic text-slate-600 dark:text-slate-400 mt-12">zZzlim® ist ein System
+                – kein einzelner Wirkstoff.</p>
+        </div>
+    </section>
 
-// Smooth scroll for anchor links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', (e) => {
-        const href = anchor.getAttribute('href');
-        if (href === '#') return;
-        const target = document.querySelector(href);
-        if (target) {
-            e.preventDefault();
-            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-    });
-});
+    <!-- ====== PRODUKT TAB-SEKTION ====== -->
+    <section class="relative py-12 md:py-24 bg-[#F8F6F4] overflow-hidden">
+        <div class="max-w-6xl mx-auto px-6">
 
-// Timeline: Progressive line fill + event reveals
-(function() {
-    const section = document.getElementById('timeline-section');
-    if (!section) return;
+            <!-- Überschrift zentriert -->
+            <div class="text-center mb-3 md:mb-4">
+                <h2 class="text-2xl sm:text-3xl md:text-[2.75rem] font-bold leading-tight tracking-tight font-display">
+                    Unterstützung für <span class="italic text-primary">deine Abendroutine.</span>
+                </h2>
+                <p class="text-slate-600 text-sm md:text-base leading-relaxed mt-3 max-w-lg mx-auto">
+                    Hochwertige Inhaltsstoffe, intelligent kombiniert. Entwickelt von Experten für eine neue Kultur des
+                    Schlafens.
+                </p>
+            </div>
 
-    const lineFill = document.getElementById('tl-line-fill');
-    const desktopEvents = document.querySelectorAll('[data-tl-event]');
-    const mobileLineFill = document.getElementById('tl-mobile-line-fill');
-    const mobileEvents = document.querySelectorAll('[data-tl-mobile-event]');
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-2 lg:gap-10 items-center">
 
-    const eventObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const ev = entry.target;
-                const tlContent = ev.querySelector('.tl-event');
-                const dot = ev.querySelector('[data-tl-dot]');
-                if (tlContent) tlContent.classList.add('visible');
-                if (dot) dot.classList.add('active');
-                eventObserver.unobserve(ev);
+                <!-- Links: Produktbild -->
+                <div class="flex justify-center">
+                    <img src="ProductPicZZLIM.png" alt="zZzlim® Night Complex"
+                        class="w-full max-w-[380px] md:max-w-[700px] h-auto object-contain drop-shadow-xl"
+                        loading="lazy" />
+                </div>
+
+                <!-- Rechts: Tabs + Content -->
+                <div>
+                    <!-- Tab Navigation -->
+                    <div class="flex gap-1 mb-6 bg-slate-100 rounded-lg p-1" id="v4-tab-nav">
+                        <button
+                            class="v4-tab flex-1 py-3 px-4 rounded-md text-xs font-bold uppercase tracking-wider transition-all bg-white text-primary shadow-sm cursor-pointer"
+                            data-tab="inhaltsstoffe">Inhaltsstoffe</button>
+                        <button
+                            class="v4-tab flex-1 py-3 px-4 rounded-md text-xs font-bold uppercase tracking-wider transition-all text-slate-500 hover:text-slate-700 cursor-pointer"
+                            data-tab="qualitaet">Qualität</button>
+                    </div>
+
+                    <!-- Tab Panels – feste Höhe -->
+                    <div class="h-[420px] md:h-[380px] overflow-y-auto">
+
+                        <!-- Panel: Inhaltsstoffe -->
+                        <div id="v4-panel-inhaltsstoffe" class="v4-panel">
+                            <p class="text-slate-600 text-sm leading-relaxed mb-5">14 natürliche Zutaten, intelligent
+                                kombiniert für deine Schlafqualität.</p>
+                            <div class="flex flex-col gap-3.5">
+                                <div class="flex items-center gap-3"><svg class="w-5 h-5 text-primary shrink-0"
+                                        viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
+                                        <circle cx="10" cy="10" r="8" stroke-opacity="0.3" />
+                                        <path d="M6 10l3 3 5-5" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg><span class="text-sm font-semibold text-slate-800">Melatonin &
+                                        L-Tryptophan</span></div>
+                                <div class="flex items-center gap-3"><svg class="w-5 h-5 text-primary shrink-0"
+                                        viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
+                                        <circle cx="10" cy="10" r="8" stroke-opacity="0.3" />
+                                        <path d="M6 10l3 3 5-5" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg><span class="text-sm font-semibold text-slate-800">Komplex aus
+                                        B-Vitaminen</span></div>
+                                <div class="flex items-center gap-3"><svg class="w-5 h-5 text-primary shrink-0"
+                                        viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
+                                        <circle cx="10" cy="10" r="8" stroke-opacity="0.3" />
+                                        <path d="M6 10l3 3 5-5" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg><span class="text-sm font-semibold text-slate-800">Safran-Extrakt</span></div>
+                                <div class="flex items-center gap-3"><svg class="w-5 h-5 text-primary shrink-0"
+                                        viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
+                                        <circle cx="10" cy="10" r="8" stroke-opacity="0.3" />
+                                        <path d="M6 10l3 3 5-5" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg><span class="text-sm font-semibold text-slate-800">Nopal-Kaktus Pulver</span>
+                                </div>
+                            </div>
+                            <!-- Zertifizierungen -->
+                            <div class="flex flex-col gap-3 mt-6 pt-5 border-t border-slate-200/60">
+                                <div class="flex items-center gap-4 bg-white/60 rounded-xl p-4 border border-slate-100">
+                                    <img src="68bf2fd664663f05dc5b4154_large-White_Merieux_Logo.webp" alt="Mérieux"
+                                        class="h-8 object-contain invert" loading="lazy" />
+                                    <div><span class="text-sm font-bold text-slate-800">Mérieux NutriSciences</span>
+                                        <p class="text-xs text-slate-500 mt-0.5">Jede Charge unabhängig geprüft</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-4 bg-white/60 rounded-xl p-4 border border-slate-100">
+                                    <div
+                                        class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+                                        <i data-lucide="shield-check" class="w-5 h-5 text-primary"></i>
+                                    </div>
+                                    <div><span class="text-sm font-bold text-slate-800">GMP, HACCP & ISO
+                                            zertifiziert</span>
+                                        <p class="text-xs text-slate-500 mt-0.5">Höchste Produktionsstandards</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Panel: Qualität -->
+                        <div id="v4-panel-qualitaet" class="v4-panel hidden">
+                            <p class="text-slate-600 text-sm leading-relaxed mb-5">Keine Kompromisse bei Qualität &
+                                Reinheit.</p>
+                            <div class="grid grid-cols-3 gap-4 bg-white/60 rounded-2xl p-6 border border-slate-100">
+                                <div class="flex flex-col items-center gap-2">
+                                    <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
+                                        <i data-lucide="leaf" class="w-5 h-5 text-primary"></i>
+                                    </div><span class="text-xs text-slate-600 font-medium text-center">Vegan</span>
+                                </div>
+                                <div class="flex flex-col items-center gap-2">
+                                    <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
+                                        <i data-lucide="dna" class="w-5 h-5 text-primary"></i>
+                                    </div><span class="text-xs text-slate-600 font-medium text-center">Ohne
+                                        Gentechnik</span>
+                                </div>
+                                <div class="flex flex-col items-center gap-2">
+                                    <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
+                                        <i data-lucide="wheat-off" class="w-5 h-5 text-primary"></i>
+                                    </div><span class="text-xs text-slate-600 font-medium text-center">Glutenfrei</span>
+                                </div>
+                                <div class="flex flex-col items-center gap-2">
+                                    <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
+                                        <i data-lucide="heart-handshake" class="w-5 h-5 text-primary"></i>
+                                    </div><span
+                                        class="text-xs text-slate-600 font-medium text-center">Tierversuchsfrei</span>
+                                </div>
+                                <div class="flex flex-col items-center gap-2">
+                                    <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
+                                        <i data-lucide="candy-off" class="w-5 h-5 text-primary"></i>
+                                    </div><span class="text-xs text-slate-600 font-medium text-center">Ohne
+                                        Zucker</span>
+                                </div>
+                                <div class="flex flex-col items-center gap-2">
+                                    <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
+                                        <i data-lucide="flask-conical-off" class="w-5 h-5 text-primary"></i>
+                                    </div><span class="text-xs text-slate-600 font-medium text-center">Keine
+                                        Aromen</span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- CTA -->
+                    <div class="mt-8 text-center">
+                        <a href="https://zzzlim.de/products/zzzlim%C2%AE-monatskur-30-kapseln"
+                            class="bg-primary text-white px-10 py-4 rounded-full font-bold text-sm uppercase tracking-wider hover:bg-primary/90 cursor-pointer inline-block transition-all">
+                            In Ruhe ausprobieren
+                        </a>
+                        <p class="text-xs text-slate-400 mt-3">*Nur solange der Vorrat reicht. Versandkostenfrei ab 50€.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tab-Logik -->
+    <script>
+            (function () {
+                const tabs = document.querySelectorAll('.v4-tab');
+                const panels = document.querySelectorAll('.v4-panel');
+                tabs.forEach(tab => {
+                    tab.addEventListener('click', () => {
+                        tabs.forEach(t => { t.classList.remove('bg-white', 'text-primary', 'shadow-sm'); t.classList.add('text-slate-500'); });
+                        tab.classList.add('bg-white', 'text-primary', 'shadow-sm'); tab.classList.remove('text-slate-500');
+                        panels.forEach(p => p.classList.add('hidden'));
+                        document.getElementById('v4-panel-' + tab.dataset.tab).classList.remove('hidden');
+                    });
+                });
+            })();
+    </script>
+
+    <!-- SOCIAL PROOF -->
+    <section class="py-12 md:py-24 shader-warm">
+        <div class="reveal text-center mb-6 md:mb-12 px-6">
+            <span class="label-badge">Erfahrungen</span>
+            <h2 class="text-4xl md:text-5xl font-medium">Das sagen Nutzer über zZzlim®</h2>
+        </div>
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="t-outer" id="t-outer">
+                <div class="t-track" id="t-track"></div>
+            </div>
+            <div class="flex items-center justify-center gap-3 mt-8">
+                <button id="t-prev" class="t-nav-btn" aria-label="Vorheriges Testimonial">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M15 18l-6-6 6-6" />
+                    </svg>
+                </button>
+                <button id="t-next" class="t-nav-btn" aria-label="Nächstes Testimonial">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M9 18l6-6-6-6" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="py-12 md:py-24 lg:py-32 shader-warm">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="reveal grid gap-10 md:grid-cols-5 md:gap-14">
+
+                <!-- Left: Heading -->
+                <div class="md:col-span-2">
+                    <h2 class="text-4xl font-medium italic">Häufige Fragen</h2>
+                    <p class="text-slate-500 mt-4 text-lg leading-relaxed">Antworten auf die wichtigsten Fragen rund um
+                        zZzlim®.</p>
+                    <p class="text-slate-400 mt-6 hidden md:block text-sm">
+                        Noch Fragen? Schreib uns an
+                        <a href="mailto:info@zzzlim.de"
+                            class="text-primary font-medium hover:underline">info@zzzlim.de</a>
+                    </p>
+                </div>
+
+                <!-- Right: Accordion -->
+                <div class="md:col-span-3 space-y-0">
+                    <details class="group border-b border-primary/10 cursor-pointer">
+                        <summary class="flex justify-between items-center font-bold text-lg py-5 list-none select-none">
+                            Ist zZzlim® ein Medikament?
+                            <i data-lucide="chevron-down"
+                                class="w-5 h-5 text-primary transition-transform duration-200 group-open:rotate-180"></i>
+                        </summary>
+                        <p class="pb-5 text-slate-600 dark:text-slate-400 leading-relaxed">
+                            Nein, es handelt sich um ein Nahrungsergänzungsmittel. Es ersetzt keine ärztliche Behandlung
+                            oder Diagnose.
+                        </p>
+                    </details>
+                    <details class="group border-b border-primary/10 cursor-pointer">
+                        <summary class="flex justify-between items-center font-bold text-lg py-5 list-none select-none">
+                            Macht zZzlim® abhängig?
+                            <i data-lucide="chevron-down"
+                                class="w-5 h-5 text-primary transition-transform duration-200 group-open:rotate-180"></i>
+                        </summary>
+                        <p class="pb-5 text-slate-600 dark:text-slate-400 leading-relaxed">
+                            Nein, es enthält keine Stoffe mit Abhängigkeitspotenzial. Du kannst die Einnahme jederzeit
+                            beenden.
+                        </p>
+                    </details>
+                    <details class="group border-b border-primary/10 cursor-pointer">
+                        <summary class="flex justify-between items-center font-bold text-lg py-5 list-none select-none">
+                            Wann und wie einnehmen?
+                            <i data-lucide="chevron-down"
+                                class="w-5 h-5 text-primary transition-transform duration-200 group-open:rotate-180"></i>
+                        </summary>
+                        <p class="pb-5 text-slate-600 dark:text-slate-400 leading-relaxed">
+                            Täglich eine Kapsel abends vor dem Schlafengehen mit ausreichend Wasser einnehmen.
+                        </p>
+                    </details>
+                    <details class="group border-b border-primary/10 cursor-pointer">
+                        <summary class="flex justify-between items-center font-bold text-lg py-5 list-none select-none">
+                            Wann merkt man etwas?
+                            <i data-lucide="chevron-down"
+                                class="w-5 h-5 text-primary transition-transform duration-200 group-open:rotate-180"></i>
+                        </summary>
+                        <p class="pb-5 text-slate-600 dark:text-slate-400 leading-relaxed">
+                            Erfahrungen können individuell unterschiedlich sein. Viele Nutzer berichten bereits nach
+                            wenigen Tagen von einem veränderten Schlafempfinden.
+                        </p>
+                    </details>
+                    <details class="group border-b border-primary/10 cursor-pointer">
+                        <summary class="flex justify-between items-center font-bold text-lg py-5 list-none select-none">
+                            Wird international versendet?
+                            <i data-lucide="chevron-down"
+                                class="w-5 h-5 text-primary transition-transform duration-200 group-open:rotate-180"></i>
+                        </summary>
+                        <p class="pb-5 text-slate-600 dark:text-slate-400 leading-relaxed">
+                            Der Versand innerhalb Deutschlands ist aktuell vollständig kostenfrei.<br /><br />In
+                            EU-Länder versenden wir ebenfalls – die Versandkosten richten sich je nach Zielland und
+                            werden im Checkout transparent angezeigt.
+                        </p>
+                    </details>
+                </div>
+
+                <!-- Mobile contact hint -->
+                <p class="text-slate-400 mt-4 md:hidden text-sm">
+                    Noch Fragen? Schreib uns an
+                    <a href="mailto:info@zzzlim.de" class="text-primary font-medium hover:underline">info@zzzlim.de</a>
+                </p>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="pt-16 md:pt-24">
+        <div class="max-w-3xl mx-auto px-6 text-center">
+
+            <!-- Logo -->
+            <a href="#"><img src="LOGOREAL.svg" alt="zZzlim®" class="h-9 md:h-10 w-auto mx-auto"
+                    style="filter: invert(1);" /></a>
+
+            <!-- Social Icons -->
+            <div class="flex items-center justify-center gap-5 mt-6">
+                <a href="https://www.instagram.com/zzzlim.de/" target="_blank" rel="noopener" class="group"
+                    aria-label="Instagram">
+                    <svg class="w-6 h-6 text-primary hover:text-primary/70 transition-colors" fill="currentColor"
+                        viewBox="0 0 24 24">
+                        <path
+                            d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
+                    </svg>
+                </a>
+                <a href="https://www.tiktok.com/@zzzlim.de" target="_blank" rel="noopener" class="group"
+                    aria-label="TikTok">
+                    <svg class="w-6 h-6 text-primary hover:text-primary/70 transition-colors" fill="currentColor"
+                        viewBox="0 0 24 24">
+                        <path
+                            d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z" />
+                    </svg>
+                </a>
+                <a href="https://www.facebook.com/people/Zzzlim/61573836653477/" target="_blank" rel="noopener"
+                    class="group" aria-label="Facebook">
+                    <svg class="w-6 h-6 text-primary hover:text-primary/70 transition-colors" fill="currentColor"
+                        viewBox="0 0 24 24">
+                        <path
+                            d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                    </svg>
+                </a>
+                <a href="https://www.youtube.com/@zZzlim-de" target="_blank" rel="noopener" class="group"
+                    aria-label="YouTube">
+                    <svg class="w-6 h-6 text-primary hover:text-primary/70 transition-colors" fill="currentColor"
+                        viewBox="0 0 24 24">
+                        <path
+                            d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+                    </svg>
+                </a>
+            </div>
+
+            <!-- Legal + Copyright -->
+            <div class="mt-10 pt-6 border-t border-primary/5">
+                <div class="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-xs text-slate-400">
+                    <a href="https://zzzlim.de/policies/legal-notice" target="_blank" rel="noopener"
+                        class="hover:text-slate-700 transition-colors">Impressum</a>
+                    <span class="text-slate-300">&bull;</span>
+                    <a href="https://zzzlim.de/policies/privacy-policy" target="_blank" rel="noopener"
+                        class="hover:text-slate-700 transition-colors">Datenschutz</a>
+                    <span class="text-slate-300">&bull;</span>
+                    <a href="https://zzzlim.de/policies/terms-of-service" target="_blank" rel="noopener"
+                        class="hover:text-slate-700 transition-colors">AGB</a>
+                </div>
+                <p class="text-xs text-slate-400 mt-4">&copy; 2025 zZzlim® International. Alle Rechte vorbehalten.</p>
+                <p class="text-[10px] text-slate-300 mt-1 pb-8">Nahrungsergänzungsmittel. Kein Ersatz für eine
+                    ausgewogene Ernährung.</p>
+            </div>
+
+        </div>
+    </footer>
+
+    <!-- Back to Top -->
+    <button id="back-to-top"
+        class="back-to-top fixed bottom-6 right-6 z-40 w-12 h-12 rounded-full bg-primary text-white shadow-lg flex items-center justify-center cursor-pointer hover:bg-primary/90"
+        aria-label="Nach oben scrollen">
+        <i data-lucide="arrow-up" class="w-5 h-5"></i>
+    </button>
+
+    <!-- JavaScript -->
+    <script>
+        // Init Lucide icons
+        lucide.createIcons();
+
+        // Hero Typewriter for all versions
+        function heroTypewriter(elId, delay) {
+            const el = document.getElementById(elId);
+            if (!el) return;
+            const word = 'Reparatur.';
+            let i = 0;
+            function type() {
+                if (i < word.length) {
+                    el.textContent += word[i];
+                    i++;
+                    setTimeout(type, 90);
+                } else {
+                    el.classList.add('done');
+                }
             }
-        });
-    }, { rootMargin: '-80px 0px', threshold: 0.3 });
-    desktopEvents.forEach(ev => eventObserver.observe(ev));
+            setTimeout(type, delay);
+        }
+        heroTypewriter('hero-word', 800);
 
-    const mobileObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const ev = entry.target;
-                const content = ev.querySelector('.tl-mobile-event');
-                const dot = ev.querySelector('[data-tl-mobile-dot]');
-                if (content) content.classList.add('visible');
-                if (dot) dot.classList.add('active');
-                mobileObserver.unobserve(ev);
+        // Scroll Reveal
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, { rootMargin: '-100px 0px', threshold: 0.01 });
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // Left Scroll Dots
+        (function () {
+            const dotsContainer = document.getElementById('scroll-dots');
+            if (!dotsContainer) return;
+            const dots = dotsContainer.querySelectorAll('.scroll-dot');
+            const total = dots.length;
+            function updateDots() {
+                const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+                const pct = docHeight > 0 ? Math.min(1, window.scrollY / docHeight) : 0;
+                const active = Math.round(pct * total);
+                dots.forEach((d, i) => d.classList.toggle('active', i < active));
             }
+            window.addEventListener('scroll', updateDots, { passive: true });
+            updateDots();
+        })();
+
+        // Scroll Indicator Fade
+        const scrollIndicator = document.getElementById('scroll-indicator');
+        window.addEventListener('scroll', () => {
+            if (scrollIndicator) {
+                scrollIndicator.style.opacity = window.scrollY > 100 ? '0' : '1';
+                scrollIndicator.style.transition = 'opacity 0.3s ease-out';
+            }
+        }, { passive: true });
+
+        // Back to Top
+        const backToTop = document.getElementById('back-to-top');
+        window.addEventListener('scroll', () => {
+            if (backToTop) backToTop.classList.toggle('visible', window.scrollY > 500);
+        }, { passive: true });
+        backToTop?.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+        // Mobile Menu (fullscreen overlay)
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileMenuPanel = document.getElementById('mobile-menu-panel');
+        const menuClose = document.getElementById('menu-close');
+        const menuNavLinks = mobileMenu ? mobileMenu.querySelectorAll('.menu-nav-link') : [];
+        const menuCtaLink = mobileMenu ? mobileMenu.querySelector('.menu-cta-link') : null;
+
+        function openMenu() {
+            mobileMenu.classList.remove('pointer-events-none');
+            mobileMenu.setAttribute('aria-hidden', 'false');
+            menuToggle.setAttribute('aria-expanded', 'true');
+            menuToggle.classList.add('is-open');
+            mobileMenuPanel.classList.add('menu-open');
+            document.body.style.overflow = 'hidden';
+            setTimeout(() => {
+                menuNavLinks.forEach(l => l.classList.add('visible'));
+                if (menuCtaLink) menuCtaLink.classList.add('visible');
+            }, 60);
+        }
+        function closeMenu() {
+            menuToggle.setAttribute('aria-expanded', 'false');
+            menuToggle.classList.remove('is-open');
+            menuNavLinks.forEach(l => l.classList.remove('visible'));
+            if (menuCtaLink) menuCtaLink.classList.remove('visible');
+            mobileMenuPanel.classList.remove('menu-open');
+            setTimeout(() => {
+                mobileMenu.classList.add('pointer-events-none');
+                mobileMenu.setAttribute('aria-hidden', 'true');
+                document.body.style.overflow = '';
+            }, 560);
+        }
+        menuToggle?.addEventListener('click', openMenu);
+        menuClose?.addEventListener('click', closeMenu);
+        mobileMenu?.querySelectorAll('.menu-nav-link, .menu-cta-link').forEach(link => link.addEventListener('click', closeMenu));
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', (e) => {
+                const href = anchor.getAttribute('href');
+                if (href === '#') return;
+                const target = document.querySelector(href);
+                if (target) {
+                    e.preventDefault();
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
         });
-    }, { rootMargin: '-60px 0px', threshold: 0.3 });
-    mobileEvents.forEach(ev => mobileObserver.observe(ev));
 
-    function updateLineFill() {
-        const rect = section.getBoundingClientRect();
-        const sectionH = section.offsetHeight;
-        const viewH = window.innerHeight;
-        const scrolledInto = viewH - rect.top;
-        const progress = Math.max(0, Math.min(1, scrolledInto / (sectionH + viewH * 0.3)));
-        if (lineFill) lineFill.style.height = (progress * 100) + '%';
-        if (mobileLineFill) mobileLineFill.style.height = (progress * 100) + '%';
-    }
-    window.addEventListener('scroll', updateLineFill, { passive: true });
-    updateLineFill();
-})();
+        // Timeline: Progressive line fill + event reveals + scroll nav
+        (function () {
+            const section = document.getElementById('timeline-section');
+            if (!section) return;
+
+            const lineFill = document.getElementById('tl-line-fill');
+            const desktopEvents = document.querySelectorAll('[data-tl-event]');
+            const mobileLineFill = document.getElementById('tl-mobile-line-fill');
+            const mobileEvents = document.querySelectorAll('[data-tl-mobile-event]');
+            const scrollNav = document.getElementById('tl-scroll-nav');
+            const navDots = scrollNav ? scrollNav.querySelectorAll('.tl-nav-dot') : [];
+            const allEvents = desktopEvents.length ? desktopEvents : mobileEvents;
+            const labels = ['Nervensystem', 'Mentale Erholung', 'Hormonelle Prozesse', 'Vorbereitung'];
+
+            // Track which events have been revealed
+            const revealedDesktop = new Set();
+            const revealedMobile = new Set();
+
+            const eventObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const ev = entry.target;
+                        const tlContent = ev.querySelector('.tl-event');
+                        const dot = ev.querySelector('[data-tl-dot]');
+                        if (tlContent) tlContent.classList.add('visible');
+                        if (dot) dot.classList.add('active');
+                        revealedDesktop.add(ev);
+                        eventObserver.unobserve(ev);
+                    }
+                });
+            }, { rootMargin: '-80px 0px', threshold: 0.3 });
+            desktopEvents.forEach(ev => eventObserver.observe(ev));
+
+            const mobileObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const ev = entry.target;
+                        const content = ev.querySelector('.tl-mobile-event');
+                        const dot = ev.querySelector('[data-tl-mobile-dot]');
+                        if (content) content.classList.add('visible');
+                        if (dot) dot.classList.add('active');
+                        revealedMobile.add(ev);
+                        mobileObserver.unobserve(ev);
+                    }
+                });
+            }, { rootMargin: '-60px 0px', threshold: 0.3 });
+            mobileEvents.forEach(ev => mobileObserver.observe(ev));
+
+            // Scroll nav: show/hide and track active dot
+            function updateScrollNav() {
+                if (!scrollNav) return;
+                const rect = section.getBoundingClientRect();
+                const viewH = window.innerHeight;
+                const inView = rect.top < viewH * 0.8 && rect.bottom > viewH * 0.2;
+
+                if (inView) {
+                    scrollNav.classList.add('visible');
+                } else {
+                    scrollNav.classList.remove('visible');
+                }
+
+                // Determine which event is most centered in viewport
+                const events = window.innerWidth >= 768 ? desktopEvents : mobileEvents;
+                let activeIdx = -1;
+                let bestDist = Infinity;
+                events.forEach((ev, i) => {
+                    const evRect = ev.getBoundingClientRect();
+                    const center = evRect.top + evRect.height / 2;
+                    const dist = Math.abs(center - viewH / 2);
+                    if (dist < bestDist && evRect.top < viewH * 0.75) {
+                        bestDist = dist;
+                        activeIdx = i;
+                    }
+                });
+
+                navDots.forEach((dot, i) => {
+                    dot.classList.toggle('active', i === activeIdx);
+                });
+            }
+
+            // Nav dot click: scroll to event
+            navDots.forEach((dot, i) => {
+                dot.addEventListener('click', () => {
+                    const events = window.innerWidth >= 768 ? desktopEvents : mobileEvents;
+                    if (events[i]) {
+                        events[i].scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }
+                });
+            });
+
+            function updateLineFill() {
+                const rect = section.getBoundingClientRect();
+                const sectionH = section.offsetHeight;
+                const viewH = window.innerHeight;
+                const scrolledInto = viewH - rect.top;
+                const progress = Math.max(0, Math.min(1, scrolledInto / (sectionH + viewH * 0.3)));
+                if (lineFill) lineFill.style.height = (progress * 100) + '%';
+                if (mobileLineFill) mobileLineFill.style.height = (progress * 100) + '%';
+                updateScrollNav();
+            }
+            window.addEventListener('scroll', updateLineFill, { passive: true });
+            updateLineFill();
+        })();
 
 
-// Floating Z's
-(function() {
-    const zChars = ['z', 'zz', 'zzz', 'Z', 'zZ'];
-    const sizes = [13, 16, 20, 24];
-    function spawnZ() {
-        const el = document.createElement('span');
-        el.className = 'float-z';
-        el.textContent = zChars[Math.floor(Math.random() * zChars.length)];
-        const size = sizes[Math.floor(Math.random() * sizes.length)];
-        el.style.fontSize = size + 'px';
-        el.style.left = (4 + Math.random() * 88) + 'vw';
-        el.style.top = (15 + Math.random() * 65) + 'vh';
-        const travel = '-' + (70 + Math.random() * 110) + 'px';
-        const rotStart = (Math.random() * 16 - 8) + 'deg';
-        const rotEnd = (Math.random() * 28 - 14) + 'deg';
-        const maxOpacity = (0.035 + Math.random() * 0.04).toFixed(3);
-        const dur = 6 + Math.random() * 7;
-        el.style.setProperty('--travel', travel);
-        el.style.setProperty('--rot-start', rotStart);
-        el.style.setProperty('--rot-end', rotEnd);
-        el.style.setProperty('--max-opacity', maxOpacity);
-        el.style.animation = 'floatUp ' + dur + 's ease-out forwards';
-        document.body.appendChild(el);
-        setTimeout(() => el.remove(), dur * 1000 + 100);
-    }
-    setTimeout(() => { spawnZ(); setInterval(spawnZ, 1800); }, 2000);
-})();
 
-// Testimonials Carousel (3 visible, slide)
-(function() {
-    const outer = document.getElementById('t-outer');
-    const track = document.getElementById('t-track');
-    const prevBtn = document.getElementById('t-prev');
-    const nextBtn = document.getElementById('t-next');
-    if (!outer || !track) return;
 
-    const testimonials = [
-        { quote: 'Keine Hungerattacken mehr – trotz Wechseljahren und unverändertem Alltag. Endlich ruhig schlafen und sich wieder wohlfühlen.', author: 'Christine J., 53 J.' },
-        { quote: 'Nur 5 h Schlaf? Das war einmal! Süßes Verlangen weg, laut App perfekter Schlaf – ganz ohne Mittagsschlaf.', author: 'Ulrich R., 74 J.' },
-        { quote: 'Mein Schlafverhalten hat sich sehr schnell verbessert und die Lust auf irgendwelche Snacks ist extrem zurückgegangen.', author: 'Ronald J.' },
-        { quote: 'Seit ich zZzlim nutze, schlafe ich endlich besser, tiefer und wache erholt auf. Ich fühle mich entspannter und ausgeglichener.', author: 'Monika B., 54 J.' },
-        { quote: 'Ich war anfangs skeptisch, aber nach zwei Wochen schlafe ich tiefer und wache viel erholter auf. Meine Abendroutine hat sich komplett verändert.', author: 'Stefan K., 41 J.' },
-        { quote: 'Endlich ein Produkt, das hält, was es verspricht. Ich bin ruhiger am Abend und schlafe schneller ein.', author: 'Luisa H., 38 J.' },
-        { quote: 'Mein Schlaf hat sich spürbar verbessert. Ich wache nicht mehr um 3 Uhr auf und fühle mich morgens deutlich fitter.', author: 'Peter M., 62 J.' },
-        { quote: 'Als Krankenschwester im Schichtdienst war mein Schlaf immer ein Problem. zZzlim hilft mir, schneller in den Ruhemodus zu kommen.', author: 'Andrea W., 47 J.' }
-    ];
+        // Testimonials Carousel (3 visible, slide)
+        (function () {
+            const outer = document.getElementById('t-outer');
+            const track = document.getElementById('t-track');
+            const prevBtn = document.getElementById('t-prev');
+            const nextBtn = document.getElementById('t-next');
+            if (!outer || !track) return;
 
-    const GAP = 24;
-    let tIndex = 0;
+            const testimonials = [
+                { quote: 'Keine Hungerattacken mehr – trotz Wechseljahren und unverändertem Alltag. Endlich ruhig schlafen und sich wieder wohlfühlen.', author: 'Christine J., 53 J.' },
+                { quote: 'Nur 5 h Schlaf? Das war einmal! Süßes Verlangen weg, laut App perfekter Schlaf – ganz ohne Mittagsschlaf.', author: 'Ulrich R., 74 J.' },
+                { quote: 'Mein Schlafverhalten hat sich sehr schnell verbessert und die Lust auf irgendwelche Snacks ist extrem zurückgegangen.', author: 'Ronald J.' },
+                { quote: 'Seit ich zZzlim nutze, schlafe ich endlich besser, tiefer und wache erholt auf. Ich fühle mich entspannter und ausgeglichener.', author: 'Monika B., 54 J.' },
+                { quote: 'Ich war anfangs skeptisch, aber nach zwei Wochen schlafe ich tiefer und wache viel erholter auf. Meine Abendroutine hat sich komplett verändert.', author: 'Stefan K., 41 J.' },
+                { quote: 'Endlich ein Produkt, das hält, was es verspricht. Ich bin ruhiger am Abend und schlafe schneller ein.', author: 'Luisa H., 38 J.' },
+                { quote: 'Mein Schlaf hat sich spürbar verbessert. Ich wache nicht mehr um 3 Uhr auf und fühle mich morgens deutlich fitter.', author: 'Peter M., 62 J.' },
+                { quote: 'Als Krankenschwester im Schichtdienst war mein Schlaf immer ein Problem. zZzlim hilft mir, schneller in den Ruhemodus zu kommen.', author: 'Andrea W., 47 J.' }
+            ];
 
-    function getVisible() { return window.innerWidth >= 768 ? 3 : 1; }
+            const GAP = 24;
+            let tIndex = 0;
 
-    function buildCards() {
-        track.innerHTML = '';
-        testimonials.forEach(t => {
-            const card = document.createElement('div');
-            card.className = 't-card';
-            card.innerHTML =
-                '<div class="t-stars">★★★★★</div>' +
-                '<p class="t-quote">\u201E' + t.quote + '\u201C</p>' +
-                '<p class="t-author">' + t.author + '</p>';
-            track.appendChild(card);
-        });
-        requestAnimationFrame(() => { setWidths(); goTo(tIndex, false); });
-    }
+            function getVisible() { return window.innerWidth >= 768 ? 3 : 1; }
 
-    function setWidths() {
-        const visible = getVisible();
-        const outerW = outer.offsetWidth;
-        if (!outerW) return;
-        const cardW = Math.floor((outerW - GAP * (visible - 1)) / visible);
-        track.querySelectorAll('.t-card').forEach(c => {
-            c.style.flex = '0 0 ' + cardW + 'px';
-            c.style.maxWidth = cardW + 'px';
-        });
-    }
+            function buildCards() {
+                track.innerHTML = '';
+                testimonials.forEach(t => {
+                    const card = document.createElement('div');
+                    card.className = 't-card';
+                    card.innerHTML =
+                        '<div class="t-stars">★★★★★</div>' +
+                        '<p class="t-quote">\u201E' + t.quote + '\u201C</p>' +
+                        '<p class="t-author">' + t.author + '</p>';
+                    track.appendChild(card);
+                });
+                requestAnimationFrame(() => { setWidths(); goTo(tIndex, false); });
+            }
 
-    function goTo(idx, animate) {
-        const max = Math.max(0, testimonials.length - getVisible());
-        tIndex = Math.max(0, Math.min(idx, max));
-        const card = track.firstElementChild;
-        if (!card) return;
-        const step = card.getBoundingClientRect().width + GAP;
-        track.style.transition = animate === false ? 'none' : 'transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
-        track.style.transform = 'translateX(-' + (tIndex * step) + 'px)';
-        if (prevBtn) prevBtn.disabled = tIndex === 0;
-        if (nextBtn) nextBtn.disabled = tIndex >= max;
-    }
+            function setWidths() {
+                const visible = getVisible();
+                const outerW = outer.offsetWidth;
+                if (!outerW) return;
+                const cardW = Math.floor((outerW - GAP * (visible - 1)) / visible);
+                track.querySelectorAll('.t-card').forEach(c => {
+                    c.style.flex = '0 0 ' + cardW + 'px';
+                    c.style.maxWidth = cardW + 'px';
+                });
+            }
 
-    buildCards();
+            function goTo(idx, animate) {
+                const max = Math.max(0, testimonials.length - getVisible());
+                tIndex = Math.max(0, Math.min(idx, max));
+                const card = track.firstElementChild;
+                if (!card) return;
+                const step = card.getBoundingClientRect().width + GAP;
+                track.style.transition = animate === false ? 'none' : 'transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+                track.style.transform = 'translateX(-' + (tIndex * step) + 'px)';
+                if (prevBtn) prevBtn.disabled = tIndex === 0;
+                if (nextBtn) nextBtn.disabled = tIndex >= max;
+            }
 
-    prevBtn?.addEventListener('click', () => goTo(tIndex - 1, true));
-    nextBtn?.addEventListener('click', () => goTo(tIndex + 1, true));
+            buildCards();
 
-    let resizeTimer;
-    window.addEventListener('resize', () => {
-        clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(() => { setWidths(); goTo(tIndex, false); }, 100);
-    });
-})();
-</script>
+            prevBtn?.addEventListener('click', () => goTo(tIndex - 1, true));
+            nextBtn?.addEventListener('click', () => goTo(tIndex + 1, true));
 
-</body></html>
+            let resizeTimer;
+            window.addEventListener('resize', () => {
+                clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(() => { setWidths(); goTo(tIndex, false); }, 100);
+            });
+        })();
+    </script>
+
+</body>
+
+</html>
