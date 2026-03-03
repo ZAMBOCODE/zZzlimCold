@@ -753,6 +753,8 @@
             overflow: hidden;
             box-shadow: 0 4px 24px rgba(134, 19, 48, 0.06), 0 1px 3px rgba(0, 0, 0, 0.04);
             transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            display: flex;
+            flex-direction: column;
         }
 
         .pillar-card:hover {
@@ -793,6 +795,7 @@
 
         .pillar-card-body {
             padding: 28px 32px 36px;
+            flex: 1;
         }
 
         .pillar-card ul li span {
@@ -997,7 +1000,7 @@
     <!-- Header -->
     <header
         class="sticky top-0 z-50 w-full bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-primary/10">
-        <div class="max-w-7xl mx-auto px-6 h-12 flex items-center justify-between">
+        <div class="max-w-[1440px] mx-auto px-6 lg:px-12 h-12 flex items-center justify-between">
             <a href="#"><img src="LOGOREAL.svg" alt="zZzlim®" class="h-9 w-auto" style="filter: invert(1);" /></a>
             <nav class="hidden md:flex items-center gap-10 text-sm font-medium">
                 <a class="hover:text-primary transition-colors cursor-pointer" href="#ursachen">Ursachen</a>
@@ -1060,7 +1063,7 @@
 
     <!-- HERO – Mobile: V3 (zentriert, Dose neben Bullets) | Desktop: V1 (links, Dose Hintergrund) -->
     <section id="main-content" class="relative bg-[#F8F6F4] py-16 md:py-28 lg:py-36 overflow-hidden">
-        <div class="max-w-6xl mx-auto px-6 relative z-10">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
             <!-- Headline + Text: zentriert auf Mobile, links auf Desktop -->
             <div class="text-center md:text-left max-w-xl mx-auto md:mx-0 mb-8">
                 <h1 class="text-[clamp(1.75rem,8vw,4rem)] font-medium font-display leading-[0.95] tracking-tight mb-2">
@@ -1129,7 +1132,7 @@
                 <path d="M160 15 L166 27 L154 27 Z" fill="#861330" class="cycle-ring-1" />
             </svg>
         </div>
-        <div class="max-w-7xl mx-auto px-6">
+        <div class="max-w-[1440px] mx-auto px-6 lg:px-12">
             <div class="reveal max-w-2xl mx-auto text-center mb-8 md:mb-16">
                 <span class="label-badge">Das Problem</span>
                 <h2 class="text-4xl md:text-5xl font-medium mt-4 mb-6">Viele kennen diese Nächte</h2>
@@ -1175,7 +1178,7 @@
 
     <!-- WAS IM SCHLAF PASSIERT -->
     <section class="tl-section py-16 md:py-32 overflow-hidden" id="timeline-section">
-        <div class="max-w-5xl mx-auto px-6 relative">
+        <div class="max-w-6xl mx-auto px-6 lg:px-12 relative">
             <div class="reveal text-center mb-12 md:mb-28">
                 <span class="label-badge">Was im Schlaf passiert</span>
                 <h2 class="text-4xl md:text-5xl font-medium mb-6">Schlaf ist keine passive Pause.</h2>
@@ -1288,7 +1291,7 @@
 
     <!-- PROBLEM & ABENDROUTINE -->
     <section class="py-20 md:py-32 bg-[#F8F6F4]">
-        <div class="max-w-4xl mx-auto px-6 text-center">
+        <div class="max-w-5xl mx-auto px-6 lg:px-12 text-center">
             <div class="reveal">
                 <span class="label-badge">Unser moderner Abend</span>
                 <h2 class="text-4xl md:text-5xl font-medium italic mb-4">Das Problem beginnt vor dem Bett.</h2>
@@ -1343,12 +1346,12 @@
 
     <!-- DIE 3 SÄULEN VON zZzlim® -->
     <section id="wirkung" class="pt-10 pb-16 md:pt-16 md:pb-32 shader-cool dark:bg-background-dark">
-        <div class="max-w-7xl mx-auto px-6">
+        <div class="max-w-[1440px] mx-auto px-6 lg:px-12">
             <div class="reveal text-center mb-10 md:mb-20">
                 <span class="label-badge">Die Formulierung</span>
                 <h2 class="text-4xl md:text-5xl font-medium">Die 3 Säulen von zZzlim®</h2>
             </div>
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-7 stagger-children items-start">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-7 stagger-children items-stretch">
 
                 <!-- Säule 1 -->
                 <div class="reveal pillar-card" style="--index: 0">
@@ -1426,7 +1429,7 @@
 
     <!-- ====== PRODUKT TAB-SEKTION ====== -->
     <section class="relative py-12 md:py-24 bg-[#F8F6F4] overflow-hidden">
-        <div class="max-w-6xl mx-auto px-6">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12">
 
             <!-- Überschrift zentriert -->
             <div class="text-center mb-3 md:mb-4">
@@ -1606,7 +1609,7 @@
             <span class="label-badge">Erfahrungen</span>
             <h2 class="text-4xl md:text-5xl font-medium">Das sagen Nutzer über zZzlim®</h2>
         </div>
-        <div class="max-w-6xl mx-auto px-6">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12">
             <div class="t-outer" id="t-outer">
                 <div class="t-track" id="t-track"></div>
             </div>
@@ -1629,7 +1632,7 @@
 
     <!-- FAQ -->
     <section id="faq" class="py-12 md:py-24 lg:py-32 shader-warm">
-        <div class="max-w-5xl mx-auto px-6">
+        <div class="max-w-6xl mx-auto px-6 lg:px-12">
             <div class="reveal grid gap-10 md:grid-cols-5 md:gap-14">
 
                 <!-- Left: Heading -->
