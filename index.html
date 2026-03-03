@@ -6,10 +6,10 @@
 
     <!-- Microsoft Clarity -->
     <script type="text/javascript">
-        (function(c,l,a,r,i,t,y){
-            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        (function (c, l, a, r, i, t, y) {
+            c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments) };
+            t = l.createElement(r); t.async = 1; t.src = "https://www.clarity.ms/tag/" + i;
+            y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
         })(window, document, "clarity", "script", "vp2dt62h1p");
     </script>
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
@@ -229,18 +229,18 @@
 
         /* Scroll Indicator Bounce */
         .scroll-indicator {
-            animation: scrollBounce 2s cubic-bezier(0.36, 0.07, 0.19, 0.97) infinite;
+            animation: scrollBounce 3s ease-in-out infinite;
         }
 
         @keyframes scrollBounce {
 
             0%,
             100% {
-                transform: translate(-50%, 0);
+                transform: translateY(0);
             }
 
             50% {
-                transform: translate(-50%, 6px);
+                transform: translateY(4px);
             }
         }
 
@@ -1001,7 +1001,7 @@
     <header
         class="sticky top-0 z-50 w-full bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-primary/10">
         <div class="max-w-[1440px] mx-auto px-6 lg:px-12 h-12 flex items-center justify-between">
-            <a href="#"><img src="LOGOREAL.svg" alt="zZzlim®" class="h-9 w-auto" style="filter: invert(1);" /></a>
+            <a href="https://zzzlim.de/products/zzzlim%C2%AE-monatskur-30-kapseln"><img src="LOGOREAL.svg" alt="zZzlim®" class="h-9 w-auto" style="filter: invert(1);" /></a>
             <nav class="hidden md:flex items-center gap-10 text-sm font-medium">
                 <a class="hover:text-primary transition-colors cursor-pointer" href="#ursachen">Ursachen</a>
                 <a class="hover:text-primary transition-colors cursor-pointer" href="#wirkung">Wirkung</a>
@@ -1069,23 +1069,22 @@
                 <h1 class="text-[clamp(1.75rem,8vw,4rem)] font-medium font-display leading-[0.95] tracking-tight mb-2">
                     Schlaf ist keine Pause.</h1>
                 <p class="text-[clamp(1.75rem,8vw,4rem)] font-medium font-display leading-[0.95] tracking-tight mb-6">
-                    <span class="text-primary italic">Schlaf ist <span id="hero-word-wrap"><span id="hero-word"></span></span></span></p>
-                <p class="text-base md:text-lg text-slate-500 font-display leading-relaxed mb-6">
-                    Wenn du nachts hellwach bist oder morgens gerädert aufwachst, liegt das oft nicht an dir, sondern an deinem Nervensystem und deiner Abendroutine.
+                    <span class="text-primary italic">Schlaf ist <span id="hero-word-wrap"><span
+                                id="hero-word"></span></span></span>
                 </p>
-                <a href="https://zzzlim.de/products/zzzlim%C2%AE-monatskur-30-kapseln"
-                    class="cta-glow bg-primary text-white px-10 py-4 rounded-xl font-bold text-base hover:bg-primary/90 cursor-pointer inline-block">
-                    In Ruhe ausprobieren
-                </a>
+                <p class="text-base md:text-lg text-slate-500 font-display leading-relaxed mb-6">
+                    Wenn Zucker oder Stress deine Melatonin-Produktion bremsen,
+                    bleibt dein Körper nachts im Arbeitsmodus – statt in den Reparaturmodus zu wechseln.
+                </p>
             </div>
 
             <!-- Mobile: Bullets links + Dose rechts im Grid -->
             <div class="grid grid-cols-5 gap-4 items-end md:hidden mt-8">
-                <ul class="col-span-3 space-y-3 text-sm text-slate-700 font-body">
-                    <li class="flex items-start gap-2"><span class="text-primary font-bold mt-0.5">&bull;</span>14 sorgfältig abgestimmte Wirkstoffe</li>
-                    <li class="flex items-start gap-2"><span class="text-primary font-bold mt-0.5">&bull;</span>Herstellung nach europäischen Qualitätsstandards</li>
-                    <li class="flex items-start gap-2"><span class="text-primary font-bold mt-0.5">&bull;</span>Rezeptur auf Basis zugelassener EU-Health-Claims</li>
-                    <li class="flex items-start gap-2"><span class="text-primary font-bold mt-0.5">&bull;</span>Entwickelt als Teil einer bewussten Abendroutine</li>
+                <ul class="col-span-3 space-y-2.5 text-sm text-slate-700 font-body content-end">
+                    <li class="flex items-start gap-2"><span class="text-primary font-bold mt-0.5">&bull;</span><span><strong class="text-slate-900">14 Wirkstoffe</strong> in einer Kapsel</span></li>
+                    <li class="flex items-start gap-2"><span class="text-primary font-bold mt-0.5">&bull;</span><span>Hergestellt nach <strong class="text-slate-900">EU-Qualitätsstandards</strong></span></li>
+                    <li class="flex items-start gap-2"><span class="text-primary font-bold mt-0.5">&bull;</span><span>Basierend auf <strong class="text-slate-900">zugelassenen Health-Claims</strong></span></li>
+                    <li class="flex items-start gap-2"><span class="text-primary font-bold mt-0.5">&bull;</span><span><strong class="text-slate-900">Hilfe</strong> für deine Abendroutine</span></li>
                 </ul>
                 <div class="col-span-2 flex justify-center overflow-visible">
                     <a href="https://zzzlim.de/products/zzzlim%C2%AE-monatskur-30-kapseln">
@@ -1098,20 +1097,27 @@
             <!-- Desktop: Bullets links + Dose als Hintergrund rechts -->
             <div class="relative mt-8 hidden md:block">
                 <ul class="relative z-10 space-y-3 text-sm text-slate-700 font-body max-w-xs">
-                    <li class="flex items-start gap-2"><span class="text-primary font-bold mt-0.5">&bull;</span>14 sorgfältig abgestimmte Wirkstoffe</li>
-                    <li class="flex items-start gap-2"><span class="text-primary font-bold mt-0.5">&bull;</span>Herstellung nach europäischen Qualitätsstandards</li>
-                    <li class="flex items-start gap-2"><span class="text-primary font-bold mt-0.5">&bull;</span>Rezeptur auf Basis zugelassener EU-Health-Claims</li>
-                    <li class="flex items-start gap-2"><span class="text-primary font-bold mt-0.5">&bull;</span>Entwickelt als Teil einer bewussten Abendroutine</li>
+                    <li class="flex items-start gap-2"><span class="text-primary font-bold mt-0.5">&bull;</span><span><strong class="text-slate-900">14 Wirkstoffe</strong> in einer Kapsel</span></li>
+                    <li class="flex items-start gap-2"><span class="text-primary font-bold mt-0.5">&bull;</span><span>Hergestellt nach <strong class="text-slate-900">EU-Qualitätsstandards</strong></span></li>
+                    <li class="flex items-start gap-2"><span class="text-primary font-bold mt-0.5">&bull;</span><span>Basierend auf <strong class="text-slate-900">zugelassenen Health-Claims</strong></span></li>
+                    <li class="flex items-start gap-2"><span class="text-primary font-bold mt-0.5">&bull;</span><span><strong class="text-slate-900">Hilfe</strong> für deine Abendroutine</span></li>
                 </ul>
-                <a href="https://zzzlim.de/products/zzzlim%C2%AE-monatskur-30-kapseln" class="absolute right-0 bottom-0 translate-y-1/4 w-[72%] max-w-[520px]">
+                <a href="https://zzzlim.de/products/zzzlim%C2%AE-monatskur-30-kapseln"
+                    class="absolute right-0 bottom-0 translate-y-1/4 w-[72%] max-w-[520px]">
                     <img src="ProductPicZZLIM.png" alt="zZzlim® Dose"
                         class="w-full h-auto object-contain opacity-100 cursor-pointer" />
                 </a>
             </div>
         </div>
-        <a href="#ursachen" class="flex flex-col items-center gap-2 mt-16 relative z-10 cursor-pointer no-underline">
-            <span class="text-xs font-bold uppercase tracking-wider text-primary font-display">Mehr erfahren</span>
-            <i data-lucide="chevron-down" class="w-5 h-5 text-primary"></i>
+        <div class="text-center mt-10 relative z-10">
+            <a href="https://zzzlim.de/products/zzzlim%C2%AE-monatskur-30-kapseln"
+                class="cta-glow bg-primary text-white px-10 py-4 rounded-full font-bold text-base hover:bg-primary/90 cursor-pointer inline-block">
+                In Ruhe ausprobieren
+            </a>
+        </div>
+        <a href="#ursachen"
+            class="flex items-center justify-center gap-1.5 mt-8 relative z-10 cursor-pointer no-underline group">
+            <span class="text-sm font-bold text-primary font-display group-hover:underline scroll-indicator">Warum 80 % falsch schlafen ↓</span>
         </a>
     </section>
 
@@ -1173,6 +1179,73 @@
             </div>
             <p class="reveal text-center text-xl italic text-slate-600 dark:text-slate-400 mt-8 md:mt-16">Du bist damit
                 nicht allein.</p>
+        </div>
+    </section>
+
+    <!-- MINI PRODUKT-TEASER -->
+    <section class="py-12 md:py-20 bg-[#F8F6F4]">
+        <div class="max-w-5xl mx-auto px-6 lg:px-12">
+            <div class="reveal flex flex-col md:flex-row items-center gap-8 md:gap-12">
+                <div class="flex-shrink-0">
+                    <a href="https://zzzlim.de/products/zzzlim%C2%AE-monatskur-30-kapseln">
+                        <img src="ProductPicZZLIM.png" alt="zZzlim Night Complex"
+                            class="w-64 md:w-80 lg:w-96 h-auto object-contain drop-shadow-lg cursor-pointer hover:scale-105 transition-transform"
+                            loading="lazy" />
+                    </a>
+                </div>
+                <div class="text-center md:text-left">
+                    <h3 class="text-2xl md:text-3xl font-medium font-display mb-3">zZzlim – <span
+                            class="text-primary italic">Dein Schlafprotokoll</span></h3>
+                    <p class="text-slate-500 font-body text-sm md:text-base leading-relaxed mb-4">
+                        14 Wirkstoffe · 1 Kapsel am Abend · Entwickelt in der EU
+                    </p>
+                    <div class="flex flex-wrap items-center justify-center md:justify-start gap-3 mb-6">
+                        <span
+                            class="inline-flex items-center gap-1.5 text-xs font-semibold text-primary bg-primary/8 px-3 py-1.5 rounded-full">
+                            <i data-lucide="shield-check" class="w-3.5 h-3.5"></i> Laborgeprüft
+                        </span>
+                        <span
+                            class="inline-flex items-center gap-1.5 text-xs font-semibold text-primary bg-primary/8 px-3 py-1.5 rounded-full">
+                            <i data-lucide="leaf" class="w-3.5 h-3.5"></i> Vegan
+                        </span>
+                        <span
+                            class="inline-flex items-center gap-1.5 text-xs font-semibold text-primary bg-primary/8 px-3 py-1.5 rounded-full">
+                            <i data-lucide="truck" class="w-3.5 h-3.5"></i> Kostenloser Versand
+                        </span>
+                    </div>
+                    <a href="https://zzzlim.de/products/zzzlim%C2%AE-monatskur-30-kapseln"
+                        class="cta-glow bg-primary text-white px-8 py-3.5 rounded-full font-bold text-sm uppercase tracking-wider hover:bg-primary/90 cursor-pointer inline-block transition-all">
+                        In Ruhe ausprobieren
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SOCIAL PROOF (moved up for early trust) -->
+    <section class="py-12 md:py-24 shader-warm">
+        <div class="reveal text-center mb-6 md:mb-12 px-6">
+            <span class="label-badge">Erfahrungen</span>
+            <h2 class="text-4xl md:text-5xl font-medium">Das sagen Nutzer über zZzlim</h2>
+        </div>
+        <div class="max-w-7xl mx-auto px-6 lg:px-12">
+            <div class="t-outer" id="t-outer">
+                <div class="t-track" id="t-track"></div>
+            </div>
+            <div class="flex items-center justify-center gap-3 mt-8">
+                <button id="t-prev" class="t-nav-btn" aria-label="Vorheriges Testimonial">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M15 18l-6-6 6-6" />
+                    </svg>
+                </button>
+                <button id="t-next" class="t-nav-btn" aria-label="Nächstes Testimonial">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M9 18l6-6-6-6" />
+                    </svg>
+                </button>
+            </div>
         </div>
     </section>
 
@@ -1296,7 +1369,8 @@
                 <span class="label-badge">Unser moderner Abend</span>
                 <h2 class="text-4xl md:text-5xl font-medium italic mb-4">Das Problem beginnt vor dem Bett.</h2>
                 <p class="text-lg text-slate-600 leading-relaxed max-w-2xl mx-auto mb-12">
-                    Späte Mahlzeiten, Bildschirmlicht und Stress bis kurz vor dem Einschlafen senden Aktivitätssignale an
+                    Späte Mahlzeiten, Bildschirmlicht und Stress bis kurz vor dem Einschlafen senden Aktivitätssignale
+                    an
                     den Körper. Für ihn beginnt die Nacht dadurch oft zu spät.
                 </p>
             </div>
@@ -1349,7 +1423,7 @@
         <div class="max-w-[1440px] mx-auto px-6 lg:px-12">
             <div class="reveal text-center mb-10 md:mb-20">
                 <span class="label-badge">Die Formulierung</span>
-                <h2 class="text-4xl md:text-5xl font-medium">Die 3 Säulen von zZzlim®</h2>
+                <h2 class="text-4xl md:text-5xl font-medium">Die 3 Säulen von zZzlim</h2>
             </div>
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-7 stagger-children items-stretch">
 
@@ -1423,7 +1497,8 @@
                 </div>
 
             </div>
-            <p class="reveal text-center text-xl italic text-slate-600 dark:text-slate-400 mt-12">zZzlim® ist ein System, kein einzelner Wirkstoff.</p>
+            <p class="reveal text-center text-xl italic text-slate-600 dark:text-slate-400 mt-12">zZzlim® ist ein
+                System, kein einzelner Wirkstoff.</p>
         </div>
     </section>
 
@@ -1603,33 +1678,6 @@
             })();
     </script>
 
-    <!-- SOCIAL PROOF -->
-    <section class="py-12 md:py-24 shader-warm">
-        <div class="reveal text-center mb-6 md:mb-12 px-6">
-            <span class="label-badge">Erfahrungen</span>
-            <h2 class="text-4xl md:text-5xl font-medium">Das sagen Nutzer über zZzlim®</h2>
-        </div>
-        <div class="max-w-7xl mx-auto px-6 lg:px-12">
-            <div class="t-outer" id="t-outer">
-                <div class="t-track" id="t-track"></div>
-            </div>
-            <div class="flex items-center justify-center gap-3 mt-8">
-                <button id="t-prev" class="t-nav-btn" aria-label="Vorheriges Testimonial">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M15 18l-6-6 6-6" />
-                    </svg>
-                </button>
-                <button id="t-next" class="t-nav-btn" aria-label="Nächstes Testimonial">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M9 18l6-6-6-6" />
-                    </svg>
-                </button>
-            </div>
-        </div>
-    </section>
-
     <!-- FAQ -->
     <section id="faq" class="py-12 md:py-24 lg:py-32 shader-warm">
         <div class="max-w-6xl mx-auto px-6 lg:px-12">
@@ -1721,7 +1769,7 @@
         <div class="max-w-3xl mx-auto px-6 text-center">
 
             <!-- Logo -->
-            <a href="#"><img src="LOGOREAL.svg" alt="zZzlim®" class="h-9 md:h-10 w-auto mx-auto"
+            <a href="https://zzzlim.de/products/zzzlim%C2%AE-monatskur-30-kapseln"><img src="LOGOREAL.svg" alt="zZzlim®" class="h-9 md:h-10 w-auto mx-auto"
                     style="filter: invert(1);" /></a>
 
             <!-- Social Icons -->
